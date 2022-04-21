@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class GamePlay : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Awake()
+   
+    public void Awake()
     {
-        PlayerTank.Instance.PlayerMovement();
-        EnemyTank.Instance.EnemyMovement();
+        Debug.Log("Awake called in GamePlay");
+        Test();
     }
-    private void Start()
-    {
 
+    public void Update()
+    {
+        //PlayerTank.Instance.PlayerMovement();
+        //EnemyTank.Instance.EnemyMovement();
+    }
+
+    void Test()
+    {
+        Debug.Log("Inside Test");
+        PlayerTank.Instance.PlayerMovement();
     }
 
 }

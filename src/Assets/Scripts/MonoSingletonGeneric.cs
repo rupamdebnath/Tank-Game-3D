@@ -7,7 +7,7 @@ public class MonoSingletonGeneric <T> : MonoBehaviour where T : MonoSingletonGen
     private static T instance;
     public static T Instance { get { return instance; } }
 
-    protected virtual void Awake()
+    void Awake()
     {
         if (instance == null)
         {
