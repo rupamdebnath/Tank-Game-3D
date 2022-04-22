@@ -7,7 +7,7 @@ public class GamePlay : MonoBehaviour
    
     public void Awake()
     {
-        Debug.Log("Awake called in GamePlay");
+        //Debug.Log("Awake called in GamePlay");
         Test();
     }
 
@@ -20,7 +20,7 @@ public class GamePlay : MonoBehaviour
     void Test()
     {
         Debug.Log("Inside Test");
-        PlayerTank.Instance.PlayerMovement();
+        //PlayerTank.Instance.PlayerMovement();
     }
 
 }

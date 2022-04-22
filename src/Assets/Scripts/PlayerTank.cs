@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTank : MonoSingletonGeneric <PlayerTank>
+public class PlayerTank : MonoSingletonGeneric<PlayerTank>
 {
+    //Rigidbody rb;
+    RaycastHit hit;
+    Camera cam;
 
-    public void PlayerMovement()
+    public float getSpeed()
     {
-        Debug.Log("Calling Player Movement function");
+        return 5f;
     }
+
 }
