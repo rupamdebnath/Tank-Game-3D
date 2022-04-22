@@ -1,31 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
  //|| Input.GetMouseButtonDown(0)
-public class TankController : MonoBehaviour
+public class TankController
 {
+    TankModel tankModel;
+    TankView tankView;
 
-    Rigidbody rb;
-    [SerializeField]
-    Joystick joystick;
-    public float speed = 5f;
-    private void Awake()
+    public TankController(TankModel _tankModel, TankView _tankview)
     {
-        rb = gameObject.GetComponent<Rigidbody>();
-    }
+        tankModel = _tankModel;
+        tankView = _tankview;
 
-    public void FixedUpdate()
-    {
-        Move(rb);        
+        GameObject.Instantiate(tankView.gameObject);
     }
-    public void Move(Rigidbody rb)
-    {
-        Vector3 movement = joystick.Vertical * transform.forward * PlayerTank.Instance.getSpeed() * Time.deltaTime;
-        rb.MovePosition(rb.position + movement);
-        float turn = joystick.Horizontal * 180 * Time.deltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-
-        rb.MoveRotation(rb.rotation * turnRotation);
-    }
-
 }
