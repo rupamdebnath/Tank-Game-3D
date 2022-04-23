@@ -9,12 +9,11 @@ public class TankService : MonoBehaviour
     void Start()
     {
         CreateTank();
-        //Instantiate(tankView.gameObject, transform.position, Quaternion.identity);
     }
 
     private void CreateTank()
     {
-        TankModel tankModel = new TankModel();
+        TankModel tankModel = new TankModel(5f);
         TankController tankController = new TankController(tankModel, tankView);
     }
 

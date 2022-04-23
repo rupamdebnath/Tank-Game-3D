@@ -8,13 +8,27 @@ public class TankView : MonoBehaviour
 
     [SerializeField]
     Joystick joystick;
-    public float speed = 5f;
+    
     Rigidbody rb;
     Vector3 movement;
     float turn;
+
+    public Vector3 Offset;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        joystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+    }
+
+    private void Start()
+    {
+        Offset = new Vector3(-4f, 2.2f, 0);
+        GameObject cam = GameObject.Find("Main Camera");
+
+        cam.transform.position = transform.position + Offset;
+
+        cam.transform.SetParent(transform);
+        Debug.Log(cam.transform.localPosition);
     }
     private void Update()
     {
@@ -24,16 +38,13 @@ public class TankView : MonoBehaviour
     public void setTankController(TankController _tankController)
     {
         tankController = _tankController;
-        joystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
+        
     }
     public void Movement(Rigidbody rb)
     {
-        movement = joystick.Vertical * transform.forward * speed * Time.deltaTime;
-        //rb.MovePosition(rb.position + movement);
-        turn = joystick.Horizontal * 180 * Time.deltaTime;
-        //Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
+        movement = joystick.Vertical * transform.forward * tankController.getTankModel().getSpeed() * Time.deltaTime;
 
-        //rb.MoveRotation(rb.rotation * turnRotation);
+        turn = joystick.Horizontal * 180 * Time.deltaTime;
     }
 
     public Rigidbody getRigidBody()
