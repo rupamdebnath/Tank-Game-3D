@@ -6,6 +6,7 @@ public class TankView : MonoBehaviour
 {
     private TankController tankController;
 
+    public TankType tankType;
     [SerializeField]
     Joystick joystick;
     

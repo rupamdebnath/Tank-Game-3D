@@ -5,9 +5,11 @@ using UnityEngine;
 public class TankModel
 {
     public float speed;
-    public TankModel(float _speed)
+    public TankModel(TankType type, float _speed, float _health, float _damage)
     {
         speed = _speed;
+        Health = _health;
+        Damage = _damage;
     }
 
 
@@ -15,4 +17,7 @@ public class TankModel
     {
         return speed;
     }
+
+    public float Health { get; }
+    public float Damage { get; }
 }
