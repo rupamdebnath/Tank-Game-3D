@@ -11,7 +11,7 @@ public class TankController
         tankModel = _tankModel;
         tankView = GameObject.Instantiate<TankView>(_tankview);
         rb = tankView.getRigidBody();
-        //tankModel.setTankController(this);
+        
         tankView.setTankController(this);
 
     }
