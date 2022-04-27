@@ -6,7 +6,7 @@ public class TankView : MonoBehaviour
 {
     private TankController tankController;
 
-    public TankType tankType;
+    //public TankType tankType;
     [SerializeField]
     Joystick joystick;
     
@@ -29,7 +29,7 @@ public class TankView : MonoBehaviour
         cam.transform.position = transform.position + Offset;
 
         cam.transform.SetParent(transform);
-        Debug.Log(cam.transform.localPosition);
+        //Debug.Log(cam.transform.localPosition);
     }
     private void Update()
     {
@@ -38,12 +38,11 @@ public class TankView : MonoBehaviour
     }
     public void setTankController(TankController _tankController)
     {
-        tankController = _tankController;
-        
+        tankController = _tankController;        
     }
     public void Movement(Rigidbody rb)
     {
-        movement = joystick.Vertical * transform.forward * tankController.getTankModel().getSpeed() * Time.deltaTime;
+        movement = joystick.Vertical * transform.forward * tankController.getTankModel().Speed * Time.deltaTime;
 
         turn = joystick.Horizontal * 180 * Time.deltaTime;
     }
