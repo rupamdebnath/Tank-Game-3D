@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTankController : MonoBehaviour
+public class EnemyTankController
 {
     EnemyTankModel enemytankModel;
     EnemyTankView enemytankView;
@@ -11,7 +11,7 @@ public class EnemyTankController : MonoBehaviour
     public EnemyTankController(EnemyTankModel _enemytankModel, EnemyTankView _enemytankView)
     {
         enemytankModel = _enemytankModel;
-        enemytankView = Instantiate(_enemytankView, new Vector2(10,0), Quaternion.identity);
+        enemytankView = GameObject.Instantiate(_enemytankView, new Vector2(10,0), Quaternion.identity);
         rb = _enemytankView.getRigidBody();
 
         enemytankView.setTankController(this);
