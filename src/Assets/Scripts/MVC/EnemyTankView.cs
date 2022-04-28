@@ -10,7 +10,6 @@ public class EnemyTankView : MonoBehaviour
 
     Rigidbody rb;
 
-    NavMeshAgent agent;
     public Transform[] waypoints;
     int waypointindex;
     Vector3 target;
@@ -18,29 +17,18 @@ public class EnemyTankView : MonoBehaviour
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        waypoints[0] = GameObject.Find("WayPoint1").transform;
+        waypoints[1] = GameObject.Find("WayPoint2").transform;
     }
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        waypoints[0] = GameObject.Find("WayPoint1").transform;
-        waypoints[1] = GameObject.Find("WayPoint2").transform;
+
 
     }
     private void Update()
     {
-        
-        if (Vector3.Distance(transform.position, target) > 1)
-        {
-            Debug.Log(Vector3.Distance(transform.position, target));
-            UpdateDestination();
-
-        }
-        else
-        {
-            IterateWayPointIndex();
-            UpdateDestination();
-        }
+        enemyTankController.Patrol();
     }
 
     public void setTankController(EnemyTankController _enemyTankController)
@@ -53,19 +41,8 @@ public class EnemyTankView : MonoBehaviour
         return rb;
     }
 
-    void UpdateDestination()
+    public Transform[] getWayPoints()
     {
-        Debug.Log("Destination");
-        target = waypoints[waypointindex].position;
-        agent.SetDestination(target);
-    }
-
-    void IterateWayPointIndex()
-    {
-        waypointindex++;
-        if(waypointindex == waypoints.Length)
-        {
-            waypointindex = 0;
-        }
+        return waypoints;
     }
 }
