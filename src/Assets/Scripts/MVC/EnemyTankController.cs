@@ -11,13 +11,13 @@ public class EnemyTankController
     public EnemyTankController(EnemyTankModel _enemytankModel, EnemyTankView _enemytankView)
     {
         enemytankModel = _enemytankModel;
-        enemytankView = GameObject.Instantiate(_enemytankView, new Vector2(10,0), Quaternion.identity);
+        enemytankView = GameObject.Instantiate(_enemytankView, new Vector3(10,0,0), Quaternion.Euler(0,180,0));
         rb = _enemytankView.getRigidBody();
 
         enemytankView.setTankController(this);
     }
 
-    public void Patrol(Vector3 movement, float turn)
+    public void Patrol(Vector3 movement)
     {
 
     }
