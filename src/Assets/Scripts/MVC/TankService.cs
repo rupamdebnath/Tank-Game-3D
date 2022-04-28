@@ -32,8 +32,9 @@ public class TankService : MonoBehaviour
     }
     private void CreateEnemyTank(int index)
     {
-        TankScriptable tankSO = tankList.tanks[index];
-        TankModel tankModel = new TankModel(tankSO);
+        TankScriptable enemytankSO = tankList.tanks[index];
+        EnemyTankModel enemytankModel = new EnemyTankModel(enemytankSO);
+        EnemyTankController enemytankController = new EnemyTankController(enemytankModel, enemytankSO.enemytankView);
         //TankController tankController = new TankController(tankModel, tankSO.tankView);
     }
 }

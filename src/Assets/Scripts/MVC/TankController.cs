@@ -15,10 +15,6 @@ public class TankController
         tankView.setTankController(this);
 
     }
-    public TankController(TankModel _tankModel)
-    {
-        tankModel = _tankModel;
-    }
 
     public void Move(Vector3 movement, float turn)
     {

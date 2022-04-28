@@ -10,6 +10,7 @@ public class TankScriptable : ScriptableObject
     public float Health;
     public float Damage;
     public TankView tankView;
+    public EnemyTankView enemytankView;
     public GameObject TankPrefab;
 }
 
