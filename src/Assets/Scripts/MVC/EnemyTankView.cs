@@ -17,8 +17,6 @@ public class EnemyTankView : MonoBehaviour
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        waypoints[0] = GameObject.Find("WayPoint1").transform;
-        waypoints[1] = GameObject.Find("WayPoint2").transform;
     }
 
     private void Start()
