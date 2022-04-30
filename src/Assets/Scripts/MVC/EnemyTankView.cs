@@ -10,9 +10,9 @@ public class EnemyTankView : MonoBehaviour
 
     Rigidbody rb;
 
-    public Transform[] waypoints;
-    int waypointindex;
-    Vector3 target;
+    public Vector3 [] waypointsvector;
+    //int waypointindex;
+    //Vector3 target;
 
     private void Awake()
     {
@@ -21,8 +21,7 @@ public class EnemyTankView : MonoBehaviour
 
     private void Start()
     {
-
-
+        waypointsvector = enemyTankController.SetupWayPoints();
     }
     private void Update()
     {
@@ -39,8 +38,9 @@ public class EnemyTankView : MonoBehaviour
         return rb;
     }
 
-    public Transform[] getWayPoints()
+    public void setWaypoints(Vector3 [] _waypointsvector)
     {
-        return waypoints;
+        waypointsvector = _waypointsvector;
     }
+
 }

@@ -9,26 +9,25 @@ public class EnemyTankController
     EnemyTankView enemytankView;
 
     Rigidbody rb;
-
+    
     NavMeshAgent agent;
-    Transform[] waypoints;
     int waypointindex;
     Vector3 target;
     public EnemyTankController(EnemyTankModel _enemytankModel, EnemyTankView _enemytankView)
     {
         enemytankModel = _enemytankModel;
-        enemytankView = GameObject.Instantiate(_enemytankView, new Vector3(10,0,0), Quaternion.Euler(0,180,0));
+        enemytankView = GameObject.Instantiate(_enemytankView, enemytankModel.SpawnPosition.position, enemytankModel.SpawnPosition.rotation);
         rb = enemytankView.getRigidBody();
-
+        
         enemytankView.setTankController(this);
         agent = enemytankView.GetComponent<NavMeshAgent>();
-        waypoints = enemytankView.getWayPoints();
-
         waypointindex = 0;
+        //waypoints = new Vector3[2];
     }
 
     public void Patrol()
-    {
+    {        
+        target = enemytankView.waypointsvector[waypointindex];
         if (Vector3.Distance(enemytankView.transform.position, target) > 1)
         {            
             UpdateDestination();
@@ -50,16 +49,25 @@ public class EnemyTankController
     }
     void UpdateDestination()
     {
-        target = waypoints[waypointindex].position;
-        agent.SetDestination(target);
+        target = enemytankView.waypointsvector[waypointindex];
+        agent.SetDestination(target); 
     }
 
     void IterateWayPointIndex()
     {
         waypointindex++;
-        if (waypointindex == waypoints.Length)
+        if (waypointindex == 2)
         {
             waypointindex = 0;
         }
+    }
+
+    public Vector3[] SetupWayPoints()
+    {
+        Vector3[] waypoints = new Vector3[2];
+        waypoints[0] = enemytankModel.SpawnPosition.position + enemytankView.transform.forward * enemytankModel.patroldistance;
+        waypoints[1] = enemytankModel.SpawnPosition.position - enemytankView.transform.forward * enemytankModel.patroldistance;
+        return waypoints;
+
     }
 }

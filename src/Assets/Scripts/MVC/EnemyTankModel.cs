@@ -5,12 +5,16 @@ using UnityEngine;
 public class EnemyTankModel
 {
     TankScriptable tankScriptableObject;
+    //Transform WayPoint1;
+    //Transform WayPoint2;
     public EnemyTankModel(TankScriptable _tankScriptable)
     {
         tankType = _tankScriptable.TankType;
         Speed = _tankScriptable.Speed;
         Health = _tankScriptable.Health;
         Damage = _tankScriptable.Damage;
+        SpawnPosition = _tankScriptable.spawnPosition;
+        tankScriptableObject = _tankScriptable;
     }
     public EnemyTankModel(TankType type, float _speed, float _health, float _damage)
     {
@@ -27,4 +31,12 @@ public class EnemyTankModel
     public float Damage { get; }
 
     public TankType tankType { get; }
+
+    public Transform SpawnPosition { get; }
+
+    public Transform[] waypoints { set;  get; }
+
+    //public Transform Waypoint2 { set;  get; }
+
+    public float patroldistance { get { return tankScriptableObject.patroldistance; } }
 }
