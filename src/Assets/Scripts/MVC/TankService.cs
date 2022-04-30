@@ -17,12 +17,7 @@ public class TankService : MonoBehaviour
     {
         CreatePlayerTank(0);
         CreateEnemyTank(1);
-        CreateEnemyTank(2);
-        //for(int i = 0; i < tankList.getLength() ; i++)
-        //{
-        //    CreateTank(i);
-        //    Debug.Log("Type:" + tankList.tanks[i].TankName);
-        //}
+        CreateEnemyTank(2); 
     }
 
     private void CreatePlayerTank(int index)
