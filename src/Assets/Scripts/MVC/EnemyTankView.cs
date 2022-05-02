@@ -42,5 +42,8 @@ public class EnemyTankView : MonoBehaviour
     {
         waypointsvector = _waypointsvector;
     }
-
+    public float getHealth()
+    {
+        return enemyTankController.getTankModel().Health;
+    }
 }

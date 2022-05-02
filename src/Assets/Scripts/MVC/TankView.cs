@@ -51,4 +51,9 @@ public class TankView : MonoBehaviour
     {
         return rb;
     }
+
+    public float getHealth()
+    {
+        return tankController.getTankModel().Health;
+    }
 }
