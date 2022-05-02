@@ -46,4 +46,8 @@ public class EnemyTankView : MonoBehaviour
     {
         return enemyTankController.getTankModel().Health;
     }
+    public void setHealth(float _damagevalue)
+    {
+        enemyTankController.getTankModel().Health -= _damagevalue;
+    }
 }

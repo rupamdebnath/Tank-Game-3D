@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletExplosion : MonoBehaviour
+public class BulletExplosion : MonoSingletonGeneric<BulletExplosion>
 {
     public LayerMask tankMask;
 
@@ -22,6 +22,7 @@ public class BulletExplosion : MonoBehaviour
     //[Obsolete] duration particle effect
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other);
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, tankMask);
         float targetHealth;
         for (int i = 0; i < colliders.Length; i++)
@@ -38,8 +39,14 @@ public class BulletExplosion : MonoBehaviour
                 continue;
             float damage = CalculateDamage(targetRigidBody.position);
 
-            
+            Debug.Log("damage :" + damage);
             //target health subtraction
+            targetRigidBody.GetComponent<EnemyTankView>().setHealth(damage);
+            Debug.Log("After damage, new health:" + targetRigidBody.GetComponent<EnemyTankView>().getHealth());
+            if(targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
+            {
+                Destroy(targetRigidBody.gameObject);
+            }
         }
         explosionParticles.transform.parent = null;
         explosionParticles.Play();

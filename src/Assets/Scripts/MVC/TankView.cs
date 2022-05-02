@@ -23,7 +23,7 @@ public class TankView : MonoBehaviour
 
     private void Start()
     {
-        Offset = new Vector3(-6f, 2.5f, 0);
+        Offset = new Vector3(-6f, 2.8f, 0);
         GameObject cam = GameObject.Find("Main Camera");
 
         cam.transform.position = transform.position + Offset;
