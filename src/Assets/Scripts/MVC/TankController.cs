@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
- //|| Input.GetMouseButtonDown(0)
+
 public class TankController
 {
     TankModel tankModel;
@@ -20,8 +20,7 @@ public class TankController
     {
         rb.MovePosition(rb.position + movement);
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-        rb.MoveRotation(rb.rotation * turnRotation);
-        //ShootBullets();
+        rb.MoveRotation(rb.rotation * turnRotation);        
     }
 
     public TankModel getTankModel()
@@ -50,14 +49,12 @@ public class TankController
         else if (Input.GetButtonUp(tankModel.BulletShell.fireButton) && !fired)
         {
             PlayerFire();
-        }
-        //Debug.Log(getTankModel().BulletShell.minlaunchForce);
+        }       
     }
 
     private void PlayerFire()
     {
-         fired = true;
-        //Rigidbody bulletInstance = Instantiate(tankModel.BulletShell._shellPrefab, tankModel.BulletShell._fireTransform.position, tankModel.BulletShell._fireTransform.rotation) as Rigidbody;
+         fired = true;        
         Rigidbody _bullet = tankView.InstantiateBullet();
         _bullet.velocity = tankModel.BulletShell.currentLaunchForce * tankModel.BulletShell._fireTransform.forward;
 

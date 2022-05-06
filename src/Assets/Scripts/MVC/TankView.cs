@@ -14,17 +14,14 @@ public class TankView : MonoBehaviour
     Rigidbody rb;
     Vector3 movement;
     float turn;
-    BulletScriptableObj normalBullet;
+
+    //offset for camera distance from player
     public Vector3 Offset;
 
-    //public Transform _fireTransform;
-    //public Slider _aimslider;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         joystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
-        //tankController.getTankModel().BulletShell._aimslider = GameObject.Find("AimSlider").GetComponent<Slider>();
-        //tankController.getTankModel().BulletShell._fireTransform = GameObject.Find("FireTransform").transform;
     }
 
     private void Start()
@@ -46,8 +43,7 @@ public class TankView : MonoBehaviour
     private void Update()
     {
         Movement(rb);
-        tankController.Move(movement, turn);
-        //Rigidbody bulletInstance = Instantiate(tankController.getTankModel().BulletShell._shellPrefab, tankController.getTankModel().BulletShell._fireTransform.position, tankController.getTankModel().BulletShell._fireTransform.rotation) as Rigidbody;
+        tankController.Move(movement, turn);        
         tankController.ShootBullets();
     }
     public void setTankController(TankController _tankController)
