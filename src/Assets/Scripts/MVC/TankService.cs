@@ -7,6 +7,7 @@ public class TankService : MonoBehaviour
     //public TankView tankView;
 
     public TankScriptableObjList tankList;
+    public BulletScriptableObjList BulletList;
 
     void Start()
     {
@@ -18,12 +19,13 @@ public class TankService : MonoBehaviour
         CreatePlayerTank(0);
         CreateEnemyTank(1);
         CreateEnemyTank(2); 
-    }
+    }   
 
     private void CreatePlayerTank(int index)
     {
-        TankScriptable tankSO = tankList.tanks[index];
-        TankModel tankModel = new TankModel(tankSO);
+        TankScriptable tankSO = tankList.tanks[index];        
+        BulletScriptableObj bulletSO = BulletList.bullets[0];
+        TankModel tankModel = new TankModel(tankSO, bulletSO);
         TankController tankController = new TankController(tankModel, tankSO.tankView);
     }
     private void CreateEnemyTank(int index)

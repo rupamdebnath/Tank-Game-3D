@@ -5,12 +5,14 @@ using UnityEngine;
 public class TankModel
 {
     TankScriptable tankScriptableObject;
-    public TankModel(TankScriptable _tankScriptable)
+    public TankModel(TankScriptable _tankScriptable, BulletScriptableObj _bulletSO)
     {
         tankType = _tankScriptable.TankType;
         Speed = _tankScriptable.Speed;
         Health = _tankScriptable.Health;
         Damage = _tankScriptable.Damage;
+        BulletShell = _bulletSO;
+        
     }
     public TankModel(TankType type, float _speed, float _health, float _damage)
     {
@@ -27,4 +29,6 @@ public class TankModel
     public float Damage { get; }
 
     public TankType tankType { get; }
+
+    public BulletScriptableObj BulletShell { get; }
 }
