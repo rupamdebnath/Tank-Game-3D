@@ -2,18 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "BulletScriptableObj", menuName = "ScriptableObjects/NewBulletSO")]
-public class BulletScriptableObj : ScriptableObject
-{
+[CreateAssetMenu(fileName = "BulletSO", menuName = "ScriptableObjects/NewBulletSO")]
+public class BulletSO : ScriptableObject
+{ 
     public Rigidbody _shellPrefab;
-
-    public Transform _fireTransform;
-    public Slider _aimslider;
+   
     public float minlaunchForce;
     public float maxlaunchForce;
     public float maxchargeTime;
-
-    public string fireButton;
     public float currentLaunchForce;
     public float chargeSpeed; 
 }
@@ -21,7 +17,7 @@ public class BulletScriptableObj : ScriptableObject
 [CreateAssetMenu(fileName = "BulletScriptableObjList", menuName = "ScriptableObjects/NewBulletSOList")]
 public class BulletScriptableObjList : ScriptableObject
 {
-    public BulletScriptableObj[] bullets;
+    public BulletSO[] bullets;
 
     public int getLength()
     {

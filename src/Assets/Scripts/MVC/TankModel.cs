@@ -5,7 +5,7 @@ using UnityEngine;
 public class TankModel
 {
     TankScriptable tankScriptableObject;
-    public TankModel(TankScriptable _tankScriptable, BulletScriptableObj _bulletSO)
+    public TankModel(TankScriptable _tankScriptable, BulletSO _bulletSO)
     {
         tankType = _tankScriptable.TankType;
         Speed = _tankScriptable.Speed;
@@ -29,5 +29,5 @@ public class TankModel
 
     public TankType tankType { get; }
 
-    public BulletScriptableObj BulletShell { get; }
+    public BulletSO BulletShell { get; }
 }

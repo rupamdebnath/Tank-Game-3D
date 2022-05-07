@@ -30,23 +30,23 @@ public class TankController
 
     public void ShootBullets()
     {
-        tankModel.BulletShell._aimslider.value = tankModel.BulletShell.minlaunchForce;
+        tankView.aimSlider.value = tankModel.BulletShell.minlaunchForce;
         if (tankModel.BulletShell.currentLaunchForce >= tankModel.BulletShell.maxlaunchForce && !fired)
         {
             tankModel.BulletShell.currentLaunchForce = tankModel.BulletShell.maxlaunchForce;
             PlayerFire();
         }
-        else if (Input.GetButtonDown(tankModel.BulletShell.fireButton))
+        else if (Input.GetButtonDown(tankView.fireButton))
         {
             fired = false;
             tankModel.BulletShell.currentLaunchForce = tankModel.BulletShell.minlaunchForce;
         }
-        else if (Input.GetButton(tankModel.BulletShell.fireButton) && !fired)
+        else if (Input.GetButton(tankView.fireButton) && !fired)
         {
             tankModel.BulletShell.currentLaunchForce += tankModel.BulletShell.chargeSpeed * Time.deltaTime;
-            tankModel.BulletShell._aimslider.value = tankModel.BulletShell.currentLaunchForce;
+            tankView.aimSlider.value = tankModel.BulletShell.currentLaunchForce;
         }
-        else if (Input.GetButtonUp(tankModel.BulletShell.fireButton) && !fired)
+        else if (Input.GetButtonUp(tankView.fireButton) && !fired)
         {
             PlayerFire();
         }       
@@ -56,7 +56,7 @@ public class TankController
     {
          fired = true;        
         Rigidbody _bullet = tankView.InstantiateBullet();
-        _bullet.velocity = tankModel.BulletShell.currentLaunchForce * tankModel.BulletShell._fireTransform.forward;
+        _bullet.velocity = tankModel.BulletShell.currentLaunchForce * tankView.fireTransform.forward;
 
         tankModel.BulletShell.currentLaunchForce = tankModel.BulletShell.minlaunchForce;
     }

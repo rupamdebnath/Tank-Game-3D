@@ -13,10 +13,11 @@ public class TankView : MonoBehaviour
     Rigidbody rb;
     Vector3 movement;
     float turn;
-
+    public Transform fireTransform;
+    public Slider aimSlider;
     //offset for camera distance from player
     public Vector3 Offset;
-
+    public string fireButton;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -32,11 +33,9 @@ public class TankView : MonoBehaviour
 
         cam.transform.SetParent(transform);
 
-        tankController.getTankModel().BulletShell._aimslider = GameObject.Find("AimSlider").GetComponent<Slider>();
-        tankController.getTankModel().BulletShell._fireTransform = GameObject.Find("PlayerFireTransform").transform;
         tankController.getTankModel().BulletShell.currentLaunchForce = tankController.getTankModel().BulletShell.minlaunchForce;
-        tankController.getTankModel().BulletShell.fireButton = "Jump";
-        tankController.getTankModel().BulletShell._aimslider.value = tankController.getTankModel().BulletShell.minlaunchForce;
+        fireButton = "Jump";
+        aimSlider.value = tankController.getTankModel().BulletShell.minlaunchForce;
         tankController.getTankModel().BulletShell.chargeSpeed = (tankController.getTankModel().BulletShell.maxlaunchForce - tankController.getTankModel().BulletShell.minlaunchForce) / tankController.getTankModel().BulletShell.maxchargeTime;
     }
     private void Update()
@@ -68,7 +67,7 @@ public class TankView : MonoBehaviour
 
     public Rigidbody InstantiateBullet()
     {
-        Rigidbody bulletInstance = Instantiate(tankController.getTankModel().BulletShell._shellPrefab, tankController.getTankModel().BulletShell._fireTransform.position, tankController.getTankModel().BulletShell._fireTransform.rotation) as Rigidbody;
+        Rigidbody bulletInstance = Instantiate(tankController.getTankModel().BulletShell._shellPrefab, fireTransform.position, fireTransform.rotation) as Rigidbody;
         return bulletInstance;
     }
 }
