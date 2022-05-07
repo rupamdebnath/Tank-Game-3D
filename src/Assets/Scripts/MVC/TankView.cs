@@ -7,7 +7,6 @@ public class TankView : MonoBehaviour
 {
     private TankController tankController;
 
-    //public TankType tankType;
     [SerializeField]
     Joystick joystick;
     
@@ -32,9 +31,9 @@ public class TankView : MonoBehaviour
         cam.transform.position = transform.position + Offset;
 
         cam.transform.SetParent(transform);
-        //Debug.Log(cam.transform.localPosition);
+
         tankController.getTankModel().BulletShell._aimslider = GameObject.Find("AimSlider").GetComponent<Slider>();
-        tankController.getTankModel().BulletShell._fireTransform = GameObject.Find("FireTransform").transform;
+        tankController.getTankModel().BulletShell._fireTransform = GameObject.Find("PlayerFireTransform").transform;
         tankController.getTankModel().BulletShell.currentLaunchForce = tankController.getTankModel().BulletShell.minlaunchForce;
         tankController.getTankModel().BulletShell.fireButton = "Jump";
         tankController.getTankModel().BulletShell._aimslider.value = tankController.getTankModel().BulletShell.minlaunchForce;

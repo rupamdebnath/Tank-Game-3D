@@ -7,7 +7,7 @@ public class EnemyTankModel
     TankScriptable tankScriptableObject;
     //Transform WayPoint1;
     //Transform WayPoint2;
-    public EnemyTankModel(TankScriptable _tankScriptable)
+    public EnemyTankModel(TankScriptable _tankScriptable, BulletScriptableObj _bulletSO)
     {
         tankType = _tankScriptable.TankType;
         Speed = _tankScriptable.Speed;
@@ -15,6 +15,7 @@ public class EnemyTankModel
         Damage = _tankScriptable.Damage;
         SpawnPosition = _tankScriptable.spawnPosition;
         tankScriptableObject = _tankScriptable;
+        BulletShell = _bulletSO;
     }
     public EnemyTankModel(TankType type, float _speed, float _health, float _damage)
     {
@@ -39,4 +40,5 @@ public class EnemyTankModel
     //public Transform Waypoint2 { set;  get; }
 
     public float patroldistance { get { return tankScriptableObject.patroldistance; } }
+    public BulletScriptableObj BulletShell { get; }
 }
