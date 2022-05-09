@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +15,8 @@ public class EnemyTankController
     NavMeshAgent agent;
     int waypointindex;
     Vector3 target;
+
+    private bool fired = false;
     public EnemyTankController(EnemyTankModel _enemytankModel, EnemyTankView _enemytankView)
     {
         enemytankModel = _enemytankModel;
@@ -69,5 +73,76 @@ public class EnemyTankController
         waypoints[1] = enemytankModel.SpawnPosition.position - enemytankView.transform.forward * enemytankModel.patroldistance;
         return waypoints;
 
+    }
+    public async void ShootBullets()
+    {
+        //enemytankView.aimSlider.value = tankModel.BulletShell.minlaunchForce;
+        //if (enemytankModel.BulletShell.currentLaunchForce >= enemytankModel.BulletShell.maxlaunchForce && fired)
+        //{
+        //enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.maxlaunchForce;
+        //EnemyFire();
+        
+        if (!fired)
+        {
+            Debug.Log("waiting...");
+            await Task.Delay(TimeSpan.FromSeconds(5f));
+            Debug.Log("Fire");
+            fired = true;
+            //await (Wait());
+        }
+        else
+        {
+            //EnemyFire();
+            
+            Debug.Log("Not fired.");
+            fired = false;
+            await Task.Delay(TimeSpan.FromSeconds(5f));
+            //await (Wait());
+        }
+        //}
+        //else if (Input.GetButtonDown(enemytankModel.fireButton))
+        //{
+        //    fired = false;
+        //    enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
+        //}
+        //else if (Input.GetButton(tankView.fireButton) && !fired)
+        //{
+        //    enemytankModel.BulletShell.currentLaunchForce += enemytankModel.BulletShell.chargeSpeed * Time.deltaTime;
+        //    tankView.aimSlider.value = enemytankModel.BulletShell.currentLaunchForce;
+        //}
+        //else if (Input.GetButtonUp(tankView.fireButton) && !fired)
+        //{
+        //    PlayerFire();
+        //}
+    }
+
+    private void EnemyFire()
+    {
+        fired = true;
+        Rigidbody _bullet = enemytankView.InstantiateBullet();
+        _bullet.velocity = enemytankModel.BulletShell.currentLaunchForce * enemytankView.fireTransform.forward;
+
+        enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
+    }
+
+    async Task Wait()
+    {
+
+        //yield return new WaitForSeconds(5f);
+        //await Task.Delay(TimeSpan.FromSeconds(5));
+        float t = 0;
+        while(t < 5f)
+        {
+            t += Time.deltaTime;
+
+            await Task.Yield();
+        }
+        //Debug.Log("Started task...");
+        //EnemyFire();
+        
+        //await Task.Delay(TimeSpan.FromSeconds(5));
+
+        //EnemyFire();
+        //throw new System.Exception();
     }
 }

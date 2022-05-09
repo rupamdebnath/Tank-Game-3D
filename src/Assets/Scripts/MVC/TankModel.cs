@@ -24,7 +24,7 @@ public class TankModel
     //public float Speed { get { return tankScriptableObject.Speed; } }
 
     public float Speed { get; }
-    public float Health { get; }
+    public float Health { get; set; }
     public float Damage { get; }
 
     public TankType tankType { get; }

@@ -31,20 +31,30 @@ public class BulletExplosion : MonoSingletonGeneric<BulletExplosion>
                 continue;
             targetRigidBody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             if (targetRigidBody.GetComponent<TankView>())
-                targetHealth = targetRigidBody.GetComponent<TankView>().getHealth();
-            else if (targetRigidBody.GetComponent<EnemyTankView>())
-                targetHealth = targetRigidBody.GetComponent<EnemyTankView>().getHealth();
-            else
-                continue;
-            float damage = CalculateDamage(targetRigidBody.position);
-            
-            //target health deduction
-            targetRigidBody.GetComponent<EnemyTankView>().setHealth(damage);
-            
-            if(targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
             {
-                Destroy(targetRigidBody.gameObject);
+                targetHealth = targetRigidBody.GetComponent<TankView>().getHealth();
+                float damage = CalculateDamage(targetRigidBody.position);
+                targetRigidBody.GetComponent<TankView>().setHealth(targetHealth - damage);
+                if (targetRigidBody.GetComponent<TankView>().getHealth() <= 0)
+                {
+                    Destroy(targetRigidBody.gameObject);
+                }
             }
+            else if (targetRigidBody.GetComponent<EnemyTankView>())
+            {
+                float damage = CalculateDamage(targetRigidBody.position);
+                targetHealth = targetRigidBody.GetComponent<EnemyTankView>().getHealth();
+                //target health deduction
+                targetRigidBody.GetComponent<EnemyTankView>().setHealth(targetHealth - damage);
+
+                if (targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
+                {
+                    Destroy(targetRigidBody.gameObject);
+                }
+                else
+                    continue;
+            }            
+
         }
         explosionParticles.transform.parent = null;
         explosionParticles.Play();

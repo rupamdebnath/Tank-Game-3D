@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,6 +39,12 @@ public class TankView : MonoBehaviour
         aimSlider.value = tankController.getTankModel().BulletShell.minlaunchForce;
         tankController.getTankModel().BulletShell.chargeSpeed = (tankController.getTankModel().BulletShell.maxlaunchForce - tankController.getTankModel().BulletShell.minlaunchForce) / tankController.getTankModel().BulletShell.maxchargeTime;
     }
+
+    public void setHealth(float _health)
+    {
+        tankController.getTankModel().Health = _health; ;
+    }
+
     private void Update()
     {
         Movement(rb);
