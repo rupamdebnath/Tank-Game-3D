@@ -11,14 +11,15 @@ public class BulletSO : ScriptableObject
     public float maxlaunchForce;
     public float maxchargeTime;
     public float currentLaunchForce;
-    public float chargeSpeed; 
+    public float chargeSpeed;
+    public float maxDamage;
 }
 
 [CreateAssetMenu(fileName = "BulletScriptableObjList", menuName = "ScriptableObjects/NewBulletSOList")]
 public class BulletScriptableObjList : ScriptableObject
 {
     public BulletSO[] bullets;
-
+        
     public int getLength()
     {
         return bullets.Length;

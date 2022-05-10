@@ -8,11 +8,12 @@ public class BulletExplosion : MonoBehaviour
     public LayerMask tankMask;
 
     public ParticleSystem explosionParticles;
-
-    private float maxDamage;
+ 
     public float explosionForce = 1000f;
     public float maxLifeTime = 2f;
     public float explosionRadius = 5f;
+
+    public BulletSO bullet;
 
     private void Start()
     {
@@ -23,30 +24,28 @@ public class BulletExplosion : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {       
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, tankMask);
-        //float targetHealth;
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody targetRigidBody = colliders[i].GetComponent<Rigidbody>();
             if (!targetRigidBody)
                 continue;
             targetRigidBody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-            if (targetRigidBody.GetComponent<TankView>())
-            {
-                //targetHealth = targetRigidBody.GetComponent<TankView>().getHealth();
+            if (targetRigidBody.GetComponent<Transform>().tag == "Player")
+            {              
                 float damage = CalculateDamage(targetRigidBody.position);
                 targetRigidBody.GetComponent<TankView>().setHealth(damage);
+                Debug.Log("Damage incurred to player " + damage);
                 if (targetRigidBody.GetComponent<TankView>().getHealth() <= 0)
                 {
-                    Destroy(targetRigidBody.gameObject);
+                    Debug.Log("You are dead");
+                    //gameObject.GetComponent<TankView>().enabled = false;
                 }
             }
-            else if (targetRigidBody.GetComponent<EnemyTankView>())
-            {
+            else if (targetRigidBody.GetComponent<Transform>().tag == "Enemy")
+            {                
                 float damage = CalculateDamage(targetRigidBody.position);
-                //targetHealth = targetRigidBody.GetComponent<EnemyTankView>().getHealth();
-                //target health deduction
                 targetRigidBody.GetComponent<EnemyTankView>().setHealth(damage);
-
+                Debug.Log("Damage incurred to enemy " + damage);
                 if (targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
                 {
                     Destroy(targetRigidBody.gameObject);
@@ -67,14 +66,8 @@ public class BulletExplosion : MonoBehaviour
         Vector3 explosionToTarget = _targetposition - transform.position;
         float explosionDistance = explosionToTarget.magnitude;
         float relativeDistance = (explosionRadius - explosionDistance) / explosionRadius;
-        float damage = relativeDistance * maxDamage;
+        float damage = relativeDistance * bullet.maxDamage;
         damage = Mathf.Max(0, damage);
         return damage;
     }
-
-    //public float setMaxDamage(float _damage)
-    //{
-    //    maxDamage = 30f;
-    //    return maxDamage;
-    //}
 }

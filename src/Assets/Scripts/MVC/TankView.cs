@@ -38,13 +38,11 @@ public class TankView : MonoBehaviour
         fireButton = "Jump";
         aimSlider.value = tankController.getTankModel().BulletShell.minlaunchForce;
         tankController.getTankModel().BulletShell.chargeSpeed = (tankController.getTankModel().BulletShell.maxlaunchForce - tankController.getTankModel().BulletShell.minlaunchForce) / tankController.getTankModel().BulletShell.maxchargeTime;
-
-        //tankController.SetDamage();
     }
 
-    public void setHealth(float _health)
+    public void setHealth(float _damagevalue)
     {
-        tankController.getTankModel().Health = _health; ;
+        tankController.getTankModel().Health -= _damagevalue;
     }
 
     private void Update()
