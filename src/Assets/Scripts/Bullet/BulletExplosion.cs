@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletExplosion : MonoSingletonGeneric<BulletExplosion>
+public class BulletExplosion : MonoBehaviour
 {
     public LayerMask tankMask;
 
     public ParticleSystem explosionParticles;
 
-    public float maxDamage = 100f;
+    private float maxDamage;
     public float explosionForce = 1000f;
     public float maxLifeTime = 2f;
     public float explosionRadius = 5f;
@@ -23,7 +23,7 @@ public class BulletExplosion : MonoSingletonGeneric<BulletExplosion>
     private void OnTriggerEnter(Collider other)
     {       
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, tankMask);
-        float targetHealth;
+        //float targetHealth;
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody targetRigidBody = colliders[i].GetComponent<Rigidbody>();
@@ -32,9 +32,9 @@ public class BulletExplosion : MonoSingletonGeneric<BulletExplosion>
             targetRigidBody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             if (targetRigidBody.GetComponent<TankView>())
             {
-                targetHealth = targetRigidBody.GetComponent<TankView>().getHealth();
+                //targetHealth = targetRigidBody.GetComponent<TankView>().getHealth();
                 float damage = CalculateDamage(targetRigidBody.position);
-                targetRigidBody.GetComponent<TankView>().setHealth(targetHealth - damage);
+                targetRigidBody.GetComponent<TankView>().setHealth(damage);
                 if (targetRigidBody.GetComponent<TankView>().getHealth() <= 0)
                 {
                     Destroy(targetRigidBody.gameObject);
@@ -43,9 +43,9 @@ public class BulletExplosion : MonoSingletonGeneric<BulletExplosion>
             else if (targetRigidBody.GetComponent<EnemyTankView>())
             {
                 float damage = CalculateDamage(targetRigidBody.position);
-                targetHealth = targetRigidBody.GetComponent<EnemyTankView>().getHealth();
+                //targetHealth = targetRigidBody.GetComponent<EnemyTankView>().getHealth();
                 //target health deduction
-                targetRigidBody.GetComponent<EnemyTankView>().setHealth(targetHealth - damage);
+                targetRigidBody.GetComponent<EnemyTankView>().setHealth(damage);
 
                 if (targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
                 {
@@ -71,4 +71,10 @@ public class BulletExplosion : MonoSingletonGeneric<BulletExplosion>
         damage = Mathf.Max(0, damage);
         return damage;
     }
+
+    //public float setMaxDamage(float _damage)
+    //{
+    //    maxDamage = 30f;
+    //    return maxDamage;
+    //}
 }

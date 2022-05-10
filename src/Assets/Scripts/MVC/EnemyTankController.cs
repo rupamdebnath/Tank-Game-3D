@@ -76,44 +76,44 @@ public class EnemyTankController
     }
     public async void ShootBullets()
     {
-        //enemytankView.aimSlider.value = tankModel.BulletShell.minlaunchForce;
-        //if (enemytankModel.BulletShell.currentLaunchForce >= enemytankModel.BulletShell.maxlaunchForce && fired)
-        //{
-        //enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.maxlaunchForce;
-        //EnemyFire();
-        
-        if (!fired)
-        {
-            Debug.Log("waiting...");
-            await Task.Delay(TimeSpan.FromSeconds(5f));
-            Debug.Log("Fire");
-            fired = true;
-            //await (Wait());
-        }
-        else
-        {
-            //EnemyFire();
-            
-            Debug.Log("Not fired.");
-            fired = false;
-            await Task.Delay(TimeSpan.FromSeconds(5f));
-            //await (Wait());
-        }
-        //}
-        //else if (Input.GetButtonDown(enemytankModel.fireButton))
-        //{
-        //    fired = false;
-        //    enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
-        //}
-        //else if (Input.GetButton(tankView.fireButton) && !fired)
-        //{
-        //    enemytankModel.BulletShell.currentLaunchForce += enemytankModel.BulletShell.chargeSpeed * Time.deltaTime;
-        //    tankView.aimSlider.value = enemytankModel.BulletShell.currentLaunchForce;
-        //}
-        //else if (Input.GetButtonUp(tankView.fireButton) && !fired)
-        //{
-        //    PlayerFire();
-        //}
+        //    //enemytankView.aimSlider.value = tankModel.BulletShell.minlaunchForce;
+        //    //if (enemytankModel.BulletShell.currentLaunchForce >= enemytankModel.BulletShell.maxlaunchForce && fired)
+        //    //{
+        //    //enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.maxlaunchForce;
+        //    //EnemyFire();
+
+        //    if (!fired)
+        //    {
+        //        //Debug.Log("waiting...");
+        //        //await Task.Delay(TimeSpan.FromSeconds(5f));
+        //        //Debug.Log("Fire");
+        //        //fired = true;
+        //        //await (Wait());
+        //    }
+        //    else
+        //    {
+        //        //EnemyFire();
+
+        //        Debug.Log("Not fired.");
+        //        fired = false;
+        //        await Task.Delay(TimeSpan.FromSeconds(5f));
+        //        //await (Wait());
+        //    }
+        //    //}
+        //    //else if (Input.GetButtonDown(enemytankModel.fireButton))
+        //    //{
+        //    //    fired = false;
+        //    //    enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
+        //    //}
+        //    //else if (Input.GetButton(tankView.fireButton) && !fired)
+        //    //{
+        //    //    enemytankModel.BulletShell.currentLaunchForce += enemytankModel.BulletShell.chargeSpeed * Time.deltaTime;
+        //    //    tankView.aimSlider.value = enemytankModel.BulletShell.currentLaunchForce;
+        //    //}
+        //    //else if (Input.GetButtonUp(tankView.fireButton) && !fired)
+        //    //{
+        //    //    PlayerFire();
+        //    //}
     }
 
     private void EnemyFire()
@@ -125,24 +125,24 @@ public class EnemyTankController
         enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
     }
 
-    async Task Wait()
-    {
+    //async Task Wait()
+    //{
 
-        //yield return new WaitForSeconds(5f);
-        //await Task.Delay(TimeSpan.FromSeconds(5));
-        float t = 0;
-        while(t < 5f)
-        {
-            t += Time.deltaTime;
+    //    //yield return new WaitForSeconds(5f);
+    //    //await Task.Delay(TimeSpan.FromSeconds(5));
+    //    //float t = 0;
+    //    //while(t < 5f)
+    //    //{
+    //    //    t += Time.deltaTime;
 
-            await Task.Yield();
-        }
-        //Debug.Log("Started task...");
-        //EnemyFire();
+    //    //    await Task.Yield();
+    //    //}
+    //    //Debug.Log("Started task...");
+    //    //EnemyFire();
         
-        //await Task.Delay(TimeSpan.FromSeconds(5));
+    //    //await Task.Delay(TimeSpan.FromSeconds(5));
 
-        //EnemyFire();
-        //throw new System.Exception();
-    }
+    //    //EnemyFire();
+    //    //throw new System.Exception();
+    //}
 }

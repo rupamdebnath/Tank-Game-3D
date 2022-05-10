@@ -60,4 +60,9 @@ public class TankController
 
         tankModel.BulletShell.currentLaunchForce = tankModel.BulletShell.minlaunchForce;
     }
+
+    //public void SetDamage()
+    //{
+    //    BulletExplosion.Instance.setMaxDamage(30f);
+    //}
 }
