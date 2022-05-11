@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +10,7 @@ public class EnemyTankController
 {
     EnemyTankModel enemytankModel;
     EnemyTankView enemytankView;
+    CancellationToken tokenSource;
 
     Rigidbody rb;
     
@@ -74,46 +76,9 @@ public class EnemyTankController
         return waypoints;
 
     }
-    public async void ShootBullets()
+    public void ShootBullets()
     {
-        //    //enemytankView.aimSlider.value = tankModel.BulletShell.minlaunchForce;
-        //    //if (enemytankModel.BulletShell.currentLaunchForce >= enemytankModel.BulletShell.maxlaunchForce && fired)
-        //    //{
-        //    //enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.maxlaunchForce;
-        //    //EnemyFire();
-
-        //    if (!fired)
-        //    {
-        //        //Debug.Log("waiting...");
-        //        //await Task.Delay(TimeSpan.FromSeconds(5f));
-        //        //Debug.Log("Fire");
-        //        //fired = true;
-        //        //await (Wait());
-        //    }
-        //    else
-        //    {
-        //        //EnemyFire();
-
-        //        Debug.Log("Not fired.");
-        //        fired = false;
-        //        await Task.Delay(TimeSpan.FromSeconds(5f));
-        //        //await (Wait());
-        //    }
-        //    //}
-        //    //else if (Input.GetButtonDown(enemytankModel.fireButton))
-        //    //{
-        //    //    fired = false;
-        //    //    enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
-        //    //}
-        //    //else if (Input.GetButton(tankView.fireButton) && !fired)
-        //    //{
-        //    //    enemytankModel.BulletShell.currentLaunchForce += enemytankModel.BulletShell.chargeSpeed * Time.deltaTime;
-        //    //    tankView.aimSlider.value = enemytankModel.BulletShell.currentLaunchForce;
-        //    //}
-        //    //else if (Input.GetButtonUp(tankView.fireButton) && !fired)
-        //    //{
-        //    //    PlayerFire();
-        //    //}
+        EnemyFire();     
     }
 
     private void EnemyFire()
@@ -124,25 +89,5 @@ public class EnemyTankController
 
         enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
     }
-
-    //async Task Wait()
-    //{
-
-    //    //yield return new WaitForSeconds(5f);
-    //    //await Task.Delay(TimeSpan.FromSeconds(5));
-    //    //float t = 0;
-    //    //while(t < 5f)
-    //    //{
-    //    //    t += Time.deltaTime;
-
-    //    //    await Task.Yield();
-    //    //}
-    //    //Debug.Log("Started task...");
-    //    //EnemyFire();
-        
-    //    //await Task.Delay(TimeSpan.FromSeconds(5));
-
-    //    //EnemyFire();
-    //    //throw new System.Exception();
-    //}
+   
 }

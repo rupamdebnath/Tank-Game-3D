@@ -48,7 +48,7 @@ public class TankView : MonoBehaviour
     private void Update()
     {
         Movement(rb);
-        tankController.Move(movement, turn);        
+        tankController.Move(movement, turn);
         tankController.ShootBullets();
     }
     public void setTankController(TankController _tankController)

@@ -20,17 +20,27 @@ public class EnemyTankView : MonoBehaviour
     }
 
     private void Start()
-    {
+    {        
         waypointsvector = enemyTankController.SetupWayPoints();
         enemyTankController.getTankModel().BulletShell.currentLaunchForce = enemyTankController.getTankModel().BulletShell.minlaunchForce;
         //fireButton = "Jump";
         //aimSlider.value = enemyTankController.getTankModel().BulletShell.minlaunchForce;
+       
         enemyTankController.getTankModel().BulletShell.chargeSpeed = (enemyTankController.getTankModel().BulletShell.maxlaunchForce - enemyTankController.getTankModel().BulletShell.minlaunchForce) / enemyTankController.getTankModel().BulletShell.maxchargeTime;
+        StartCoroutine(WaitForTime());
     }
     private void Update()
     {
+
+    }
+
+    IEnumerator WaitForTime()
+    {
         enemyTankController.Patrol();
         enemyTankController.ShootBullets();
+        yield return new WaitForSeconds(3);
+        Debug.Log("Awaiting");
+        StartCoroutine(WaitForTime());
     }
 
     public void setTankController(EnemyTankController _enemyTankController)
