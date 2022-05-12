@@ -34,7 +34,7 @@ public class BulletExplosion : MonoBehaviour
             {              
                 float damage = CalculateDamage(targetRigidBody.position);
                 targetRigidBody.GetComponent<TankView>().setHealth(damage);
-                Debug.Log("Damage incurred to player " + damage);
+                //Debug.Log("Damage incurred to player " + damage);
                 if (targetRigidBody.GetComponent<TankView>().getHealth() <= 0)
                 {
                     Debug.Log("You are dead");
@@ -45,15 +45,16 @@ public class BulletExplosion : MonoBehaviour
             {                
                 float damage = CalculateDamage(targetRigidBody.position);
                 targetRigidBody.GetComponent<EnemyTankView>().setHealth(damage);
-                Debug.Log("Damage incurred to enemy " + damage);
+                //Debug.Log("Damage incurred to enemy " + damage);
                 if (targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
-                {
+                {          
+                    targetRigidBody.GetComponent<EnemyTankView>().PlayExplosion();
                     Destroy(targetRigidBody.gameObject);
                 }
                 else
                     continue;
-            }            
-
+            }
+            //targetRigidBody.GetComponent<EnemyTankView>().tankExplosion.Play();
         }
         explosionParticles.transform.parent = null;
         explosionParticles.Play();
