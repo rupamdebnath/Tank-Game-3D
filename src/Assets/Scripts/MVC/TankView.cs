@@ -19,6 +19,7 @@ public class TankView : MonoBehaviour
     //offset for camera distance from player
     public Vector3 Offset;
     public string fireButton;
+    public ParticleSystem tankExplosion;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -76,5 +77,13 @@ public class TankView : MonoBehaviour
     {
         Rigidbody bulletInstance = Instantiate(tankController.getTankModel().BulletShell._shellPrefab, fireTransform.position, fireTransform.rotation) as Rigidbody;
         return bulletInstance;
+    }
+    public void PlayExplosion()
+    {
+        tankExplosion.transform.parent = null;
+        tankExplosion.Play();
+        GameObject.FindGameObjectWithTag("MainCamera").transform.parent = null;
+        Destroy(tankExplosion.gameObject, tankExplosion.main.duration);
+        Destroy(gameObject);
     }
 }
