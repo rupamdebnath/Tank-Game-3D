@@ -84,6 +84,15 @@ public class TankView : MonoBehaviour
         tankExplosion.Play();
         GameObject.FindGameObjectWithTag("MainCamera").transform.parent = null;
         Destroy(tankExplosion.gameObject, tankExplosion.main.duration);
-        Destroy(gameObject);
+        GameOverManager.Instance.PlayerDeath();
     }
+
+    //public void GameOver()
+    //{
+    //    Destroy(gameObject);
+    //    yield return new WaitForSeconds(2f);
+    //    Debug.Log("after 2 seconds");
+    //    GameObject.FindGameObjectWithTag("MainCamera").transform.position = new Vector3(-80.5f, 58.3f, -68.4f);
+    //    GameObject.FindGameObjectWithTag("MainCamera").transform.rotation = Quaternion.Euler(21.609f, 52.41f, 0);
+    //}
 }
