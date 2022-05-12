@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameOverManager : MonoSingletonGeneric<GameOverManager>
@@ -37,6 +38,11 @@ public class GameOverManager : MonoSingletonGeneric<GameOverManager>
         {            
             Destroy(GameObject.FindGameObjectWithTag("LevelArt"));
             StartCoroutine(OtherObjectsAnime());
+        }
+        else
+        {
+            Debug.Log("Exiting applciation, Game is over");
+            EditorApplication.ExitPlaymode();
         }
     }
 }
