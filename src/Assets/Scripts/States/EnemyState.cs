@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyTankView))]
 public class EnemyState : MonoBehaviour
 {
-    private EnemyTankView enemyTankView;
+    protected EnemyTankView enemyTankView;
 
     private void Awake()
     {
@@ -13,7 +13,6 @@ public class EnemyState : MonoBehaviour
     }
     public virtual void OnEnterState() 
     {
-        Debug.Log("Inside Base"); 
         this.enabled = true;
     }
     public virtual void OnExitState() 

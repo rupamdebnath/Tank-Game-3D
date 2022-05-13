@@ -33,6 +33,7 @@ public class EnemyTankView : MonoBehaviour
     private void Start()
     {
         currentState = idlingState;
+        ChangeState(currentState);
         waypointsvector = enemyTankController.SetupWayPoints();
         enemyTankController.getTankModel().BulletShell.currentLaunchForce = enemyTankController.getTankModel().BulletShell.minlaunchForce;
        
@@ -44,7 +45,7 @@ public class EnemyTankView : MonoBehaviour
     {
         enemyTankController.Patrol();
         enemyTankController.ShootBullets();
-        yield return new WaitForSeconds(3);        
+        yield return new WaitForSeconds(3);
         StartCoroutine(WaitForTime());
     }
 
@@ -84,7 +85,7 @@ public class EnemyTankView : MonoBehaviour
         Destroy(tankExplosion.gameObject, tankExplosion.main.duration);
     }
 
-    private void ChangeState(EnemyState _newState)
+    public void ChangeState(EnemyState _newState)
     {
         if(currentState != null)
         {

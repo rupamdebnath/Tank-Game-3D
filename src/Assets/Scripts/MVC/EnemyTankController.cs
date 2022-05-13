@@ -28,7 +28,6 @@ public class EnemyTankController
         enemytankView.setTankController(this);
         agent = enemytankView.GetComponent<NavMeshAgent>();
         waypointindex = 0;
-        //waypoints = new Vector3[2];
     }
 
     public void Patrol()

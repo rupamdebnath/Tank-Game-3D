@@ -9,8 +9,15 @@ public class EnemyIdle : EnemyState
         base.OnEnterState();
         
     }
-    private void Update()
+    private void Start()
     {
-        Debug.Log("Inside Child");
+        Debug.Log("Inside Idle");
+        StartCoroutine(GoTo());
+    }
+
+    IEnumerator GoTo()
+    {        
+        yield return new WaitForSeconds(3f);
+        enemyTankView.ChangeState(enemyTankView.chasingState);
     }
 }
