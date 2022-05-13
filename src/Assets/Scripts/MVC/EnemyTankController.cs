@@ -73,11 +73,10 @@ public class EnemyTankController
         waypoints[0] = enemytankModel.SpawnPosition.position + enemytankView.transform.forward * enemytankModel.patroldistance;
         waypoints[1] = enemytankModel.SpawnPosition.position - enemytankView.transform.forward * enemytankModel.patroldistance;
         return waypoints;
-
     }
     public void ShootBullets()
     {
-        EnemyFire();     
+        EnemyFire();
     }
 
     private void EnemyFire()

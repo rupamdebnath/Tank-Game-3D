@@ -54,7 +54,6 @@ public class BulletExplosion : MonoBehaviour
                 else
                     continue;
             }
-            //targetRigidBody.GetComponent<EnemyTankView>().tankExplosion.Play();
         }
         explosionParticles.transform.parent = null;
         explosionParticles.Play();
