@@ -7,17 +7,16 @@ public class EnemyIdle : EnemyState
     public override void OnEnterState()
     {
         base.OnEnterState();
-        
+        Debug.Log("Inside Idle");
     }
     private void Start()
-    {
-        Debug.Log("Inside Idle");
+    {        
         StartCoroutine(GoTo());
     }
 
     IEnumerator GoTo()
     {        
         yield return new WaitForSeconds(3f);
-        enemyTankView.ChangeState(enemyTankView.chasingState);
+        enemyTankView.ChangeState(enemyTankView.patrollingState);
     }
 }

@@ -9,8 +9,4 @@ public class EnemyChase : EnemyState
         base.OnEnterState();
 
     }
-    private void Start()
-    {
-        Debug.Log("Inside Chase");
-    }
 }

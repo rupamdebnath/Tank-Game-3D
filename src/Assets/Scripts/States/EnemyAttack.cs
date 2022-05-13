@@ -9,8 +9,4 @@ public class EnemyAttack : EnemyState
         base.OnEnterState();
 
     }
-    private void Start()
-    {
-        Debug.Log("Inside Attack");
-    }
 }

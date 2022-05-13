@@ -7,10 +7,8 @@ public class EnemyPatrol : EnemyState
     public override void OnEnterState()
     {
         base.OnEnterState();
-
-    }
-    private void Start()
-    {
         Debug.Log("Inside Patrol");
+        enemyTankView.getTankController().Patrol();
     }
+
 }
