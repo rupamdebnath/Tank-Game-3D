@@ -15,6 +15,16 @@ public class EnemyTankView : MonoBehaviour
     public Vector3 [] waypointsvector;
 
     public ParticleSystem tankExplosion;
+
+    private EnemyState currentState;
+    [SerializeField]
+    public EnemyIdle idlingState;
+    [SerializeField]
+    public EnemyPatrol patrollingState;
+    [SerializeField]
+    public EnemyChase chasingState;
+    [SerializeField]
+    public EnemyAttack attackingState;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -22,10 +32,9 @@ public class EnemyTankView : MonoBehaviour
 
     private void Start()
     {
+        currentState = idlingState;
         waypointsvector = enemyTankController.SetupWayPoints();
         enemyTankController.getTankModel().BulletShell.currentLaunchForce = enemyTankController.getTankModel().BulletShell.minlaunchForce;
-        //fireButton = "Jump";
-        //aimSlider.value = enemyTankController.getTankModel().BulletShell.minlaunchForce;
        
         enemyTankController.getTankModel().BulletShell.chargeSpeed = (enemyTankController.getTankModel().BulletShell.maxlaunchForce - enemyTankController.getTankModel().BulletShell.minlaunchForce) / enemyTankController.getTankModel().BulletShell.maxchargeTime;
         StartCoroutine(WaitForTime());
@@ -73,5 +82,15 @@ public class EnemyTankView : MonoBehaviour
         tankExplosion.transform.parent = null;
         tankExplosion.Play();
         Destroy(tankExplosion.gameObject, tankExplosion.main.duration);
+    }
+
+    private void ChangeState(EnemyState _newState)
+    {
+        if(currentState != null)
+        {
+            currentState.OnExitState();
+        }
+        currentState = _newState;
+        currentState.OnEnterState();
     }
 }
