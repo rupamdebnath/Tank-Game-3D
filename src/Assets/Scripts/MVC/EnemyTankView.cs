@@ -38,21 +38,12 @@ public class EnemyTankView : MonoBehaviour
         enemyTankController.getTankModel().BulletShell.currentLaunchForce = enemyTankController.getTankModel().BulletShell.minlaunchForce;
        
         enemyTankController.getTankModel().BulletShell.chargeSpeed = (enemyTankController.getTankModel().BulletShell.maxlaunchForce - enemyTankController.getTankModel().BulletShell.minlaunchForce) / enemyTankController.getTankModel().BulletShell.maxchargeTime;
-        StartCoroutine(WaitForTime());
+        //ChangeState(currentState);
     }
     void Update()
     {
         ChangeState(currentState);
     }
-    IEnumerator WaitForTime()
-    {
-        //enemyTankController.Patrol();
-        //enemyTankController.ShootBullets();
-        yield return new WaitForSeconds(3);
-        currentState = patrollingState;
-        ChangeState(currentState);
-    }
-
     public void setTankController(EnemyTankController _enemyTankController)
     {
         enemyTankController = _enemyTankController;

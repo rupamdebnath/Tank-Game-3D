@@ -87,5 +87,10 @@ public class EnemyTankController
 
         enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
     }
-   
+    public void ChasePlayer()
+    {
+        GameObject playerTarget = GameObject.FindGameObjectWithTag("Player");        
+        enemytankView.transform.LookAt(playerTarget.transform.position);
+        agent.SetDestination(playerTarget.transform.position);
+    }
 }

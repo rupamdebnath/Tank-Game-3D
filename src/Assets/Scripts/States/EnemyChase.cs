@@ -7,6 +7,15 @@ public class EnemyChase : EnemyState
     public override void OnEnterState()
     {
         base.OnEnterState();
+        Debug.Log("Inside Chase");
+
+        enemyTankView.getTankController().ChasePlayer();
+        if (Vector3.Distance(enemyTankView.transform.position, playerobj.transform.position) > 15)
+        {
+            enemyTankView.ChangeState(enemyTankView.patrollingState);
+            //enemyTankView.ChangeState(enemyTankView.attackingState);
+        }
 
     }
+
 }

@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyIdle : EnemyState
-{
+{    
     public override void OnEnterState()
     {
         base.OnEnterState();
         Debug.Log("Inside Idle");
-    }
-    private void Start()
-    {        
         StartCoroutine(GoTo());
     }
 

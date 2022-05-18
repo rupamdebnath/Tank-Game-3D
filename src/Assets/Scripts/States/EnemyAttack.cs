@@ -7,6 +7,6 @@ public class EnemyAttack : EnemyState
     public override void OnEnterState()
     {
         base.OnEnterState();
-
+        Debug.Log("Inside Attack");
     }
 }
