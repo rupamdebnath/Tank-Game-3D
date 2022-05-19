@@ -19,6 +19,10 @@ public class EnemyTankController
     Vector3 target;
 
     private bool fired = false;
+
+    float time;
+    float timeDelay = 1f;
+
     public EnemyTankController(EnemyTankModel _enemytankModel, EnemyTankView _enemytankView)
     {
         enemytankModel = _enemytankModel;
@@ -81,11 +85,17 @@ public class EnemyTankController
 
     private void EnemyFire()
     {
-        fired = true;
-        Rigidbody _bullet = enemytankView.InstantiateBullet();
-        _bullet.velocity = enemytankModel.BulletShell.currentLaunchForce * enemytankView.fireTransform.forward;
+        time = time + 1f * Time.deltaTime;
+        if(time >= timeDelay)
+        {
+            time = 0f;
+            Rigidbody _bullet = enemytankView.InstantiateBullet();
+            _bullet.velocity = enemytankModel.BulletShell.currentLaunchForce * enemytankView.fireTransform.forward;
 
-        enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
+            enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
+        }
+        //fired = true;
+
     }
     public void ChasePlayer()
     {
