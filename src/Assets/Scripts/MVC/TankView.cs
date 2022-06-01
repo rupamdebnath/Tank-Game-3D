@@ -20,6 +20,7 @@ public class TankView : MonoBehaviour
     public Vector3 Offset;
     public string fireButton;
     public ParticleSystem tankExplosion;
+    int bulletCount = 0;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -76,6 +77,8 @@ public class TankView : MonoBehaviour
     public Rigidbody InstantiateBullet()
     {
         Rigidbody bulletInstance = Instantiate(tankController.getTankModel().BulletShell._shellPrefab, fireTransform.position, fireTransform.rotation) as Rigidbody;
+        bulletCount++;
+        //ServiceEvents.Instance.OnFire?.Invoke(bulletCount);
         return bulletInstance;
     }
     public void PlayExplosion()

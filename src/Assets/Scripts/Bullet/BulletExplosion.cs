@@ -48,7 +48,7 @@ public class BulletExplosion : MonoBehaviour
                 if (targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
                 {          
                     targetRigidBody.GetComponent<EnemyTankView>().PlayExplosion();
-                    Destroy(targetRigidBody.gameObject);
+                    Destroy(targetRigidBody.gameObject); 
                 }
                 else
                     continue;

@@ -7,7 +7,7 @@ public class EnemyIdle : EnemyState
     public override void OnEnterState()
     {
         base.OnEnterState();
-        Debug.Log("Inside Idle");
+        //Debug.Log("Inside Idle");
         StartCoroutine(GoTo());
     }
 

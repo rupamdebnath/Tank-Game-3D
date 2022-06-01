@@ -8,7 +8,7 @@ public class EnemyAttack : EnemyState
     public override void OnEnterState()
     {
         base.OnEnterState();
-        Debug.Log("Inside Attack");
+        //Debug.Log("Inside Attack");
         StartCoroutine(Attack());
     }
 
@@ -21,7 +21,7 @@ public class EnemyAttack : EnemyState
         }
         else if (!fired)
         {
-            Debug.Log("Fired");
+            //Debug.Log("Fired");
             enemyTankView.getTankController().ShootBullets();
             yield return new WaitForSeconds(2f);
             fired = true;

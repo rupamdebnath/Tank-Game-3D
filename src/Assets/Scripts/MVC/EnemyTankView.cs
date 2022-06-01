@@ -25,6 +25,12 @@ public class EnemyTankView : MonoBehaviour
     public EnemyChase chasingState;
     [SerializeField]
     public EnemyAttack attackingState;
+
+    public delegate void Enemydelegate();
+
+    public static event Enemydelegate delegatenemy;
+
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -32,6 +38,7 @@ public class EnemyTankView : MonoBehaviour
 
     private void Start()
     {
+        //delegatenemy += CountEnemy;
         currentState = idlingState;
         ChangeState(currentState);
         waypointsvector = enemyTankController.SetupWayPoints();
@@ -43,6 +50,8 @@ public class EnemyTankView : MonoBehaviour
     void Update()
     {
         ChangeState(currentState);
+        //delegatenemy?.Invoke();
+        //ServiceEvents.Instance.OnEnemyDeath += CountEnemy;
     }
     public void setTankController(EnemyTankController _enemyTankController)
     {
@@ -91,5 +100,11 @@ public class EnemyTankView : MonoBehaviour
         }
         currentState = _newState;
         currentState.OnEnterState();
+    }  
+
+    void CountEnemy()
+    {
+        Debug.Log("Inside Service Events");
+        //ServiceEvents.Instance.OnEnemyDeath? Invoke();
     }
 }
