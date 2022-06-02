@@ -18,7 +18,8 @@ public class TankService : MonoBehaviour
     {
         CreatePlayerTank(0);
         CreateEnemyTank(1);
-        CreateEnemyTank(2); 
+        CreateEnemyTank(2);
+        CreateEnemyTank(3);
     }   
 
     private void CreatePlayerTank(int index)
