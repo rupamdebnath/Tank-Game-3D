@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ServiceEvents : SingletonGeneric <ServiceEvents>
 {
-
     public Action<int> ScoreCounter;
 
 	public Action<int> OnEnemyDeath;
