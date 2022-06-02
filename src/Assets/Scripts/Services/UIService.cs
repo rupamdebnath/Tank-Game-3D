@@ -40,6 +40,18 @@ public class UIService : MonoBehaviour
     void ShowEnemiesKilled(int value)
     {
         EnemiesKilledText.text = "Enemies Killed: " + value;
+        switch (value)
+        {
+            case 1:
+                StartCoroutine(ToggleAction("Achievement Unlocked : Kill 1 Enemy"));
+                break;
+            case 2:
+                StartCoroutine(ToggleAction("Achievement Unlocked : Kill 2 Enemies"));
+                break;
+            case 3:
+                StartCoroutine(ToggleAction("Achievement Unlocked : Kill 3 Enemies"));
+                break;
+        }
     }
 
     IEnumerator ToggleAction(string achievementText)
