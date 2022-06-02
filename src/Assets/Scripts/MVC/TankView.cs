@@ -53,6 +53,7 @@ public class TankView : MonoBehaviour
         tankController.Move(movement, turn);
         tankController.ShootBullets();
     }
+
     public void setTankController(TankController _tankController)
     {
         tankController = _tankController;        
@@ -78,7 +79,7 @@ public class TankView : MonoBehaviour
     {
         Rigidbody bulletInstance = Instantiate(tankController.getTankModel().BulletShell._shellPrefab, fireTransform.position, fireTransform.rotation) as Rigidbody;
         bulletCount++;
-        //ServiceEvents.Instance.OnFire?.Invoke(bulletCount);
+        ServiceEvents.Instance.OnFire?.Invoke(bulletCount);
         return bulletInstance;
     }
     public void PlayExplosion()
@@ -89,4 +90,5 @@ public class TankView : MonoBehaviour
         Destroy(tankExplosion.gameObject, tankExplosion.main.duration);
         GameOverManager.Instance.PlayerDeath();
     }
+
 }

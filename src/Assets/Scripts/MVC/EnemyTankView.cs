@@ -26,11 +26,7 @@ public class EnemyTankView : MonoBehaviour
     [SerializeField]
     public EnemyAttack attackingState;
 
-    public delegate void Enemydelegate();
-
-    public static event Enemydelegate delegatenemy;
-
-
+    
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -38,20 +34,18 @@ public class EnemyTankView : MonoBehaviour
 
     private void Start()
     {
-        //delegatenemy += CountEnemy;
         currentState = idlingState;
         ChangeState(currentState);
         waypointsvector = enemyTankController.SetupWayPoints();
         enemyTankController.getTankModel().BulletShell.currentLaunchForce = enemyTankController.getTankModel().BulletShell.minlaunchForce;
        
         enemyTankController.getTankModel().BulletShell.chargeSpeed = (enemyTankController.getTankModel().BulletShell.maxlaunchForce - enemyTankController.getTankModel().BulletShell.minlaunchForce) / enemyTankController.getTankModel().BulletShell.maxchargeTime;
-        //ChangeState(currentState);
+
     }
     void Update()
     {
         ChangeState(currentState);
-        //delegatenemy?.Invoke();
-        //ServiceEvents.Instance.OnEnemyDeath += CountEnemy;
+
     }
     public void setTankController(EnemyTankController _enemyTankController)
     {
@@ -86,7 +80,8 @@ public class EnemyTankView : MonoBehaviour
     }
 
     public void PlayExplosion()
-    { 
+    {
+
         tankExplosion.transform.parent = null;
         tankExplosion.Play();
         Destroy(tankExplosion.gameObject, tankExplosion.main.duration);
@@ -102,9 +97,4 @@ public class EnemyTankView : MonoBehaviour
         currentState.OnEnterState();
     }  
 
-    void CountEnemy()
-    {
-        Debug.Log("Inside Service Events");
-        //ServiceEvents.Instance.OnEnemyDeath? Invoke();
-    }
 }

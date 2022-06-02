@@ -14,7 +14,6 @@ public class BulletExplosion : MonoBehaviour
     public float explosionRadius = 5f;
 
     public BulletSO bullet;
-
     private void Start()
     {
         Destroy(gameObject, maxLifeTime);
@@ -46,9 +45,12 @@ public class BulletExplosion : MonoBehaviour
                 float damage = CalculateDamage(targetRigidBody.position);
                 targetRigidBody.GetComponent<EnemyTankView>().setHealth(damage);
                 if (targetRigidBody.GetComponent<EnemyTankView>().getHealth() <= 0)
-                {          
+                {   
+                    ServiceEvents.Instance.Count();                    
+                    ServiceEvents.Instance.OnEnemyDeath?.Invoke(ServiceEvents.Instance.GetCountOfEnemiesDead());
                     targetRigidBody.GetComponent<EnemyTankView>().PlayExplosion();
-                    Destroy(targetRigidBody.gameObject); 
+                    Destroy(targetRigidBody.gameObject);
+
                 }
                 else
                     continue;

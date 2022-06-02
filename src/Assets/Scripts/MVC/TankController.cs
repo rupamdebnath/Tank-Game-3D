@@ -54,15 +54,11 @@ public class TankController
 
     private void PlayerFire()
     {
-         fired = true;        
+        fired = true;        
         Rigidbody _bullet = tankView.InstantiateBullet();
         _bullet.velocity = tankModel.BulletShell.currentLaunchForce * tankView.fireTransform.forward;
 
         tankModel.BulletShell.currentLaunchForce = tankModel.BulletShell.minlaunchForce;
     }
 
-    //public void SetDamage()
-    //{
-    //    BulletExplosion.Instance.setMaxDamage(30f);
-    //}
 }

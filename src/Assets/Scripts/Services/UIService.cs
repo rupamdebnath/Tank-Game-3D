@@ -8,10 +8,24 @@ public class UIService : MonoBehaviour
     public TextMeshProUGUI BulletCountText;
     public TextMeshProUGUI EnemiesKilledText;
 
-    private void Update()
+    private void OnEnable()
     {
-        BulletCountText.text = "Bullets Fired: " + 12;
-        EnemiesKilledText.text = "Enemies Killed: " + 10;
-        
+        ServiceEvents.Instance.OnFire += GetBulletsFired;
+        ServiceEvents.Instance.OnEnemyDeath += ShowEnemiesKilled;
+    }
+    private void OnDisable()
+    {
+        ServiceEvents.Instance.OnFire -= GetBulletsFired;
+        ServiceEvents.Instance.OnEnemyDeath -= ShowEnemiesKilled;
+    }
+
+    void GetBulletsFired(int value)
+    {
+        BulletCountText.text = "Bullets Fired: " + value;
+    }
+
+    void ShowEnemiesKilled(int value)
+    {
+        EnemiesKilledText.text = "Enemies Killed: " + value;
     }
 }

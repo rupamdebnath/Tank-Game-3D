@@ -10,10 +10,13 @@ public class ServiceEvents : SingletonGeneric <ServiceEvents>
 
 	public Action<int> OnEnemyDeath;
 	public Action<int> OnFire;
-
-	public void Play()
+    int deadEnemiesCount=0;
+	public void Count()
     {
-        Debug.Log("Noth");
+        deadEnemiesCount++;
     }
-
+    public int GetCountOfEnemiesDead()
+    {
+        return deadEnemiesCount;
+    }
 }
