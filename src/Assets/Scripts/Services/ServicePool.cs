@@ -15,8 +15,7 @@ public class ServicePool<T> : SingletonGeneric<ServicePool<T>> where T : class
             {
                 item.IsUsed = true;
                 return item.Item;
-            }
-            return CreateNewPooledItem();
+            }            
         }
         return CreateNewPooledItem();
     }
