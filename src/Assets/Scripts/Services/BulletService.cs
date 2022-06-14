@@ -6,11 +6,11 @@ public class BulletService : MonoSingletonGeneric<BulletService>
 {
     public BulletScriptableObjList BulletList;
 
-    public BulletSO bulletSO;
+    //public BulletSO bulletSOReference;
 
     public Rigidbody GetBullet()
     {
-        bulletSO = BulletList.bullets[0];
-        return bulletSO._shellPrefab;
+        BulletSO bulletSOReference = BulletList.bullets[0];
+        return bulletSOReference._shellPrefab;
     }
 }
