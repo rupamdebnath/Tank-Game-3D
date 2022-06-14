@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class TankService : MonoBehaviour
 {
-    //public TankView tankView;
-
     public TankScriptableObjList tankList;
     public BulletScriptableObjList BulletList;
-
+    private ServicePoolBullet servicePoolBullet;
     void Start()
     {
         StartGame();
@@ -25,7 +23,7 @@ public class TankService : MonoBehaviour
     private void CreatePlayerTank(int index)
     {
         TankScriptable tankSO = tankList.tanks[index];
-        BulletSO bulletSO = BulletList.bullets[0];
+        BulletSO bulletSO = BulletList.bullets[0];        
         TankModel tankModel = new TankModel(tankSO, bulletSO);
         TankController tankController = new TankController(tankModel, tankSO.tankView);
     }
@@ -36,4 +34,5 @@ public class TankService : MonoBehaviour
         EnemyTankModel enemytankModel = new EnemyTankModel(enemytankSO, bulletSO);
         EnemyTankController enemytankController = new EnemyTankController(enemytankModel, enemytankSO.enemytankView);
     }
+
 }

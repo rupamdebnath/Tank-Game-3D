@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ServicePool<T> : SingletonGeneric<ServicePool<T>> where T : class
 {
-    private List<PooledItem<T>> pooledItems;
+    private List<PooledItem<T>> pooledItems = new List<PooledItem<T>>();
 
     public virtual T GetItem()
     {
