@@ -16,7 +16,8 @@ public class BulletController : MonoBehaviour
     public BulletSO bullet;
     private void Start()
     {
-        Destroy(gameObject, maxLifeTime);
+        //Destroy(gameObject, maxLifeTime);
+        BulletService.Instance.DisableObject(this.gameObject.GetComponent<Rigidbody>(), maxLifeTime);
     }
 
     //[Obsolete] duration particle effect, using explosionParticles.main.
@@ -59,7 +60,8 @@ public class BulletController : MonoBehaviour
         explosionParticles.transform.parent = null;
         explosionParticles.Play();
         Destroy(explosionParticles.gameObject, explosionParticles.main.duration);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private float CalculateDamage(Vector3 _targetposition)
