@@ -44,6 +44,7 @@ public class TankView : MonoBehaviour
     public void setHealth(float _damagevalue)
     {
         tankController.getTankModel().Health -= _damagevalue;
+        GameObject.FindGameObjectWithTag("HealthSlider").GetComponent<Slider>().value = tankController.getTankModel().Health;
     }
 
     private void Update()
