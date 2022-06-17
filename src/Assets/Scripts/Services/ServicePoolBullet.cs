@@ -14,9 +14,4 @@ public class ServicePoolBullet : ServicePool<Rigidbody>
         return GetItem();
     }
 
-    public void ReturnToPool(Rigidbody _object)
-    {
-        Debug.Log("This works");
-        //ReturnItem(_object);
-    }
 }
