@@ -57,11 +57,18 @@ public class BulletController : MonoBehaviour
                     continue;
             }
         }
-        explosionParticles.transform.parent = null;
+        //explosionParticles.transform.parent = null;
         explosionParticles.Play();
-        Destroy(explosionParticles.gameObject, explosionParticles.main.duration);
+        //Destroy(explosionParticles.gameObject, explosionParticles.main.duration);
+        StartCoroutine(SetParticleInactive(explosionParticles.gameObject, explosionParticles.main.duration));
         //Destroy(gameObject);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+    }
+
+    IEnumerator SetParticleInactive(GameObject obj, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        obj.SetActive(false);
     }
 
     private float CalculateDamage(Vector3 _targetposition)
