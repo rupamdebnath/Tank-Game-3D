@@ -8,13 +8,10 @@ public class BulletService : MonoSingletonGeneric<BulletService>
     public BulletView bulletPrefabView;
 
     private ServicePoolBullet servicePoolBullet;
-    
-    [SerializeField]
-    GameObject[] bulletObject;
+    BulletController bulletcontroller;
     //public BulletSO bulletSOReference;
     private void Start()
     {
-        bulletObject = new GameObject[5];
         servicePoolBullet = GetComponent<ServicePoolBullet>();
         StartGame();
     }
@@ -24,24 +21,20 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         
         for(int i = 0; i < 5; i++)
         {
-            //bulletObject[i] = Instantiate(servicePoolBullet.GetBullet());
-            //bulletObject[i] = InstantiateBullet();
-            //InstantiateBullet();
-            ////servicePoolBullet.ReturnItem(bulletObject[i]);
-            //bulletObject[i].SetActive(false);
-            //Debug.Log(bulletObject[i]);
-            //ServicePool.Instance.ReturnItem(bulletObject[i]);
-            
+            bulletcontroller = servicePoolBullet.GetBullet(bulletPrefabView);
+            DisableObject(bulletcontroller, bulletPrefabView.maxLifeTime);
+            //bulletPrefabView.gameObject.SetActive(false);
+            //bulletcontroller.Disable();
+            //servicePoolBullet.ReturnItem(bulletcontroller);
         }
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    servicePoolBullet.ReturnItem(bulletObject[i]);
-        //}
+
     }
 
     public BulletController GetBullet()
     {
-        return servicePoolBullet.GetBullet(bulletPrefabView);
+        BulletController bullet = servicePoolBullet.GetBullet(bulletPrefabView);
+        bullet.Enable();
+        return bullet;
     }
 
     public void DisableObject(BulletController _object, float _lifetime)
@@ -52,8 +45,13 @@ public class BulletService : MonoSingletonGeneric<BulletService>
     IEnumerator ReturnObjectToPool(BulletController _object, float _lifetime)
     {
         yield return new WaitForSeconds(_lifetime);
-        //_object.gameObject.SetActive(false);
+        _object.Disable();
         servicePoolBullet.ReturnItem(_object);
+    }
+
+    public void ReturnObjectToPoolDirectly(BulletController _bulletController)
+    {
+        servicePoolBullet.ReturnItem(_bulletController);
     }
 
 }

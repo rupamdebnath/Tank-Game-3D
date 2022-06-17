@@ -23,6 +23,16 @@ public class BulletView : MonoBehaviour
         this.bulletController = bulletController;
     }
 
+    public void Enable()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+    }
+
     public Rigidbody GetRigidBody()
     {
         return rb;
@@ -32,9 +42,14 @@ public class BulletView : MonoBehaviour
     private void Start()
     {
         //Destroy(gameObject, maxLifeTime);
-        BulletService.Instance.DisableObject(GetBulletController(), maxLifeTime);
+        //BulletService.Instance.DisableObject(this.GetBulletController(), maxLifeTime);
+        StartCoroutine(DisableThis(maxLifeTime));
     }
-
+    IEnumerator DisableThis(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
+    }
 
     //[Obsolete] duration particle effect, using explosionParticles.main.
     private void OnTriggerEnter(Collider other)
@@ -77,6 +92,8 @@ public class BulletView : MonoBehaviour
         explosionParticles.Play();
         //Destroy(explosionParticles.gameObject, explosionParticles.main.duration);
         StartCoroutine(SetParticleInactive(explosionParticles.gameObject, explosionParticles.main.duration));
+        bulletController.Disable();
+        BulletService.Instance.ReturnObjectToPoolDirectly(bulletController);
         //Destroy(gameObject);
         //gameObject.SetActive(false);
     }

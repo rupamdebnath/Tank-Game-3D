@@ -19,4 +19,14 @@ public class BulletController
     {
         return bulletView;
     }
+
+    public void Disable()
+    {
+        bulletView.Disable();
+    }
+
+    public void Enable()
+    {
+        bulletView.Enable();
+    }
 }
