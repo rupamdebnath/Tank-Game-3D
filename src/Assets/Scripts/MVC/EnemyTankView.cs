@@ -26,10 +26,8 @@ public class EnemyTankView : MonoBehaviour
     [SerializeField]
     public EnemyAttack attackingState;
 
-    private ServicePoolBullet servicePoolBullet;
     private void Awake()
     {
-        servicePoolBullet = new ServicePoolBullet();
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
@@ -75,8 +73,7 @@ public class EnemyTankView : MonoBehaviour
     }
 
     public Rigidbody InstantiateBullet()
-    {
-        //Rigidbody bulletInstance = Instantiate(enemyTankController.getTankModel().BulletShell._shellPrefab, fireTransform.position, fireTransform.rotation);
+    { 
         Rigidbody bulletTemp = BulletService.Instance.GetBullet().GetBulletView().GetRigidBody();
         bulletTemp.transform.position = fireTransform.position;
         bulletTemp.transform.rotation = fireTransform.rotation;

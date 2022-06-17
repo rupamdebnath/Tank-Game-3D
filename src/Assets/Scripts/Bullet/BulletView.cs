@@ -41,8 +41,6 @@ public class BulletView : MonoBehaviour
     public BulletSO bullet;
     private void Start()
     {
-        //Destroy(gameObject, maxLifeTime);
-        //BulletService.Instance.DisableObject(this.GetBulletController(), maxLifeTime);
         StartCoroutine(DisableThis(maxLifeTime));
     }
     IEnumerator DisableThis(float time)
@@ -88,14 +86,10 @@ public class BulletView : MonoBehaviour
                     continue;
             }
         }
-        //explosionParticles.transform.parent = null;
         explosionParticles.Play();
-        //Destroy(explosionParticles.gameObject, explosionParticles.main.duration);
         StartCoroutine(SetParticleInactive(explosionParticles.gameObject, explosionParticles.main.duration));
         bulletController.Disable();
         BulletService.Instance.ReturnObjectToPoolDirectly(bulletController);
-        //Destroy(gameObject);
-        //gameObject.SetActive(false);
     }
 
     IEnumerator SetParticleInactive(GameObject obj, float duration)

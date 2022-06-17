@@ -9,7 +9,7 @@ public class BulletService : MonoSingletonGeneric<BulletService>
 
     private ServicePoolBullet servicePoolBullet;
     BulletController bulletcontroller;
-    //public BulletSO bulletSOReference;
+
     private void Start()
     {
         servicePoolBullet = GetComponent<ServicePoolBullet>();
@@ -23,9 +23,6 @@ public class BulletService : MonoSingletonGeneric<BulletService>
         {
             bulletcontroller = servicePoolBullet.GetBullet(bulletPrefabView);
             DisableObject(bulletcontroller, bulletPrefabView.maxLifeTime);
-            //bulletPrefabView.gameObject.SetActive(false);
-            //bulletcontroller.Disable();
-            //servicePoolBullet.ReturnItem(bulletcontroller);
         }
 
     }

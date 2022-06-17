@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class TankView : MonoBehaviour
 {
     private TankController tankController;
-    private ServicePoolBullet servicePoolBullet;
     [SerializeField]
     Joystick joystick;
     
@@ -23,7 +22,6 @@ public class TankView : MonoBehaviour
     int bulletCount = 0;
     private void Awake()
     {
-        servicePoolBullet = new ServicePoolBullet();
         rb = gameObject.GetComponent<Rigidbody>();
         joystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
     }
@@ -80,8 +78,7 @@ public class TankView : MonoBehaviour
     {
         Rigidbody bulletTemp = BulletService.Instance.GetBullet().GetBulletView().GetRigidBody();
         bulletTemp.transform.position = fireTransform.position;
-        bulletTemp.transform.rotation = fireTransform.rotation;
-        //Rigidbody bulletInstance = Instantiate(BulletService.Instance.GetBullet().GetBulletView().gameObject, fireTransform.position, fireTransform.rotation);
+        bulletTemp.transform.rotation = fireTransform.rotation;        
         bulletCount++;
         ServiceEvents.Instance.OnFire?.Invoke(bulletCount);
         return bulletTemp;
