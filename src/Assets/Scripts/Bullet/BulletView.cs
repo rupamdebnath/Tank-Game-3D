@@ -66,7 +66,6 @@ public class BulletView : MonoBehaviour
 
                 if (targetRigidBody.GetComponent<TankView>().getHealth() <= 0)
                 {
-                    Debug.Log("You are dead");
                     targetRigidBody.GetComponent<TankView>().PlayExplosion();                                        
                 }
             }

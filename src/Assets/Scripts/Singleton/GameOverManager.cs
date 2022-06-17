@@ -8,7 +8,9 @@ public class GameOverManager : MonoSingletonGeneric<GameOverManager>
     
     public void PlayerDeath()
     {
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        GameObject.FindGameObjectWithTag("Player").GetComponent<TankView>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").SetActive(false);
+        GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyTankView>().enabled = false;
         StartCoroutine(CameraAnime());        
     }
 

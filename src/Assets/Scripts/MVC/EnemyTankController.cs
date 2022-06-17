@@ -95,8 +95,11 @@ public class EnemyTankController
     }
     public void ChasePlayer()
     {
-        GameObject playerTarget = GameObject.FindGameObjectWithTag("Player");        
-        enemytankView.transform.LookAt(playerTarget.transform.position);
-        agent.SetDestination(playerTarget.transform.position);
+        GameObject playerTarget = GameObject.FindGameObjectWithTag("Player");
+        if (playerTarget && enemytankView)
+        {
+            enemytankView.transform.LookAt(playerTarget.transform.position);
+            agent.SetDestination(playerTarget.transform.position);
+        }        
     }
 }
