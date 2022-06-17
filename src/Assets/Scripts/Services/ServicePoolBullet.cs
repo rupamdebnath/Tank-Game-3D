@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServicePoolBullet : ServicePool<Rigidbody>
+public class ServicePoolBullet : ServicePool<BulletController>
 {
-    protected override Rigidbody CreateItem()
+    private BulletView objectPrefabView;
+    protected override BulletController CreateItem()
     {
-        return BulletService.Instance.InstantiateBullet();        
+        BulletController bulletController = new BulletController(objectPrefabView);
+        return bulletController;          
     }
 
-    public Rigidbody GetBullet()
+    public BulletController GetBullet(BulletView objectPrefabView)
     {
+        this.objectPrefabView = objectPrefabView;
         return GetItem();
     }
 

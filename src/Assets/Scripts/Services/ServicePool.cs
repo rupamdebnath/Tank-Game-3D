@@ -18,6 +18,7 @@ public class ServicePool<T> : MonoSingletonGeneric<ServicePool<T>> where T : cla
                 return item.Item;
             }            
         }
+
         return CreateNewPooledItem();
     }
 
@@ -28,6 +29,10 @@ public class ServicePool<T> : MonoSingletonGeneric<ServicePool<T>> where T : cla
         pooledItem.IsUsed = true;
         pooledItems.Add(pooledItem);
         Debug.Log("New Item created for pool");
+        for (int i = 0; i < pooledItems.Count; i++)
+        {
+            Debug.Log("Count:" + pooledItems.Count + pooledItems[i]);
+        }
         return pooledItem.Item;
     }
 

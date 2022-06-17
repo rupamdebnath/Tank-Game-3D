@@ -78,11 +78,13 @@ public class TankView : MonoBehaviour
 
     public Rigidbody InstantiateBullet()
     {
-        //Rigidbody bulletTemp = BulletService.Instance.
-        Rigidbody bulletInstance = Instantiate(servicePoolBullet.GetBullet(), fireTransform.position, fireTransform.rotation);
+        Rigidbody bulletTemp = BulletService.Instance.GetBullet().GetBulletView().GetRigidBody();
+        bulletTemp.transform.position = fireTransform.position;
+        bulletTemp.transform.rotation = fireTransform.rotation;
+        //Rigidbody bulletInstance = Instantiate(BulletService.Instance.GetBullet().GetBulletView().gameObject, fireTransform.position, fireTransform.rotation);
         bulletCount++;
         ServiceEvents.Instance.OnFire?.Invoke(bulletCount);
-        return bulletInstance;
+        return bulletTemp;
     }
     public void PlayExplosion()
     {

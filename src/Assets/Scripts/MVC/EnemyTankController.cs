@@ -10,15 +10,12 @@ public class EnemyTankController
 {
     EnemyTankModel enemytankModel;
     EnemyTankView enemytankView;
-    CancellationToken tokenSource;
 
     Rigidbody rb;
     
     NavMeshAgent agent;
     int waypointindex;
     Vector3 target;
-
-    private bool fired = false;
 
     float time;
     float timeDelay = 1f;
@@ -94,7 +91,6 @@ public class EnemyTankController
 
             enemytankModel.BulletShell.currentLaunchForce = enemytankModel.BulletShell.minlaunchForce;
         }
-        //fired = true;
 
     }
     public void ChasePlayer()
