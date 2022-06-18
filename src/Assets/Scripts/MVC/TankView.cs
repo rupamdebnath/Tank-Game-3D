@@ -43,8 +43,11 @@ public class TankView : MonoBehaviour
 
     public void setHealth(float _damagevalue)
     {
-        tankController.getTankModel().Health -= _damagevalue;
-        GameObject.FindGameObjectWithTag("HealthSlider").GetComponent<Slider>().value = tankController.getTankModel().Health;
+        if (gameObject)
+        {
+            tankController.getTankModel().Health -= _damagevalue;
+            GameObject.FindGameObjectWithTag("HealthSlider").GetComponent<Slider>().value = tankController.getTankModel().Health;
+        }
     }
 
     private void Update()
@@ -93,4 +96,14 @@ public class TankView : MonoBehaviour
         GameOverManager.Instance.PlayerDeath();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+            setHealth(50);
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+            setHealth(10);
+    }
 }
