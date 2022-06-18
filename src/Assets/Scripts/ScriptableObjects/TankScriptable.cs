@@ -14,16 +14,3 @@ public class TankScriptable : ScriptableObject
     public Transform spawnPosition;
     public float patroldistance;
 }
-
-
-[CreateAssetMenu(fileName = "TankScriptableObjList", menuName = "ScriptableObjects/NewTankSOList")]
-public class TankScriptableObjList : ScriptableObject
-{
-    public TankScriptable[] tanks;
-
-    public int getLength()
-    {
-        return tanks.Length;
-
-    }
-}

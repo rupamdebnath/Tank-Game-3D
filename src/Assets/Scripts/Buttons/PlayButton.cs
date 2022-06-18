@@ -15,8 +15,15 @@ public class PlayButton : MonoBehaviour
 
     private void OnClick()
     {
-        GameManager.Instance.ClickToPlay();
-        GameManager.Instance.StartSpecificSound(0);
-        GameManager.Instance.DisableScreen();
+        //Time.timeScale = 1f;
+        SceneController.Instance.ClickToPlay();
+        StartCoroutine(StartScene());
+        
+    }
+
+    IEnumerator StartScene()
+    {
+        yield return new WaitForSeconds(2);
+        SceneController.Instance.LoadRespectiveScene(1);
     }
 }

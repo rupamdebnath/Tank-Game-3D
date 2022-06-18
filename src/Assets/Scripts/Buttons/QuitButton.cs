@@ -19,9 +19,9 @@ public class QuitButton : MonoBehaviour
 
     IEnumerator WaitUntilPlayed(float _length)
     {
-        GameManager.Instance.StartSpecificSound(1);
+        SceneController.Instance.StartSpecificSound(1);
         yield return new WaitForSeconds(_length);
-        GameManager.Instance.StopAllSounds();
+        SceneController.Instance.StopAllSounds();
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif

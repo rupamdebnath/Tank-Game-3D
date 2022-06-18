@@ -1,44 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoSingletonGeneric<GameManager>
 {
-    public AudioSource[] audioList;
-    public GameObject menuscreen;
-    public void ClickToPlay()
-    {
-        audioList[1].Play();
-        audioList[0].Play();
-    }
-
-    public void StopAllSounds()
-    {
-        for(int i = 0; i < 2; i++)
-        {
-            if(audioList[i].isPlaying)
-                audioList[i].Stop();
-        }
-    }
-
-    public void StopSpecificSound(int i)
-    {
-        audioList[i].Stop();
-    }
-
-    public void StartSpecificSound(int i)
-    {
-        audioList[i].Play();
-    }
-
-    public AudioClip GetAudioSource(int i)
-    {
-        return audioList[i].GetComponent<AudioClip>();
-    }
+    
+    public GameObject deathText;
+    
     
     public void PlayerDeath()
     {
+        DeathText();
         GameObject.FindGameObjectWithTag("Player").GetComponent<TankView>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
         GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyTankView>().enabled = false;
@@ -74,13 +48,13 @@ public class GameManager : MonoSingletonGeneric<GameManager>
         }
         else
         {
-            Debug.Log("Exiting applciation, Game is over");
-            EditorApplication.ExitPlaymode();
+            //Debug.Log("Exiting applciation, Game is over");
+            //EditorApplication.ExitPlaymode();
         }
     }
 
-    public void DisableScreen()
+    public void DeathText()
     {
-        menuscreen.SetActive(false);
+        deathText.gameObject.SetActive(true);
     }
 }
