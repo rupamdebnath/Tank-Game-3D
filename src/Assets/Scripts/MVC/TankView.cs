@@ -93,7 +93,7 @@ public class TankView : MonoBehaviour
         tankExplosion.Play();
         GameObject.FindGameObjectWithTag("MainCamera").transform.parent = null;
         Destroy(tankExplosion.gameObject, tankExplosion.main.duration);
-        GameOverManager.Instance.PlayerDeath();
+        GameManager.Instance.PlayerDeath();
     }
 
     private void OnCollisionEnter(Collision collision)

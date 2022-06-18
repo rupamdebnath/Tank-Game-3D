@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class GameOverManager : MonoSingletonGeneric<GameOverManager>
+public class GameManager : MonoSingletonGeneric<GameManager>
 {
     
     public void PlayerDeath()
