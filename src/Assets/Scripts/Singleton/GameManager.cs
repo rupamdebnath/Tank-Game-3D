@@ -5,6 +5,37 @@ using UnityEngine;
 
 public class GameManager : MonoSingletonGeneric<GameManager>
 {
+    public AudioSource[] audioList;
+    public GameObject menuscreen;
+    public void ClickToPlay()
+    {
+        audioList[1].Play();
+        audioList[0].Play();
+    }
+
+    public void StopAllSounds()
+    {
+        for(int i = 0; i < 2; i++)
+        {
+            if(audioList[i].isPlaying)
+                audioList[i].Stop();
+        }
+    }
+
+    public void StopSpecificSound(int i)
+    {
+        audioList[i].Stop();
+    }
+
+    public void StartSpecificSound(int i)
+    {
+        audioList[i].Play();
+    }
+
+    public AudioClip GetAudioSource(int i)
+    {
+        return audioList[i].GetComponent<AudioClip>();
+    }
     
     public void PlayerDeath()
     {
@@ -46,5 +77,10 @@ public class GameManager : MonoSingletonGeneric<GameManager>
             Debug.Log("Exiting applciation, Game is over");
             EditorApplication.ExitPlaymode();
         }
+    }
+
+    public void DisableScreen()
+    {
+        menuscreen.SetActive(false);
     }
 }
