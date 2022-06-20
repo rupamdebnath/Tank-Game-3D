@@ -86,7 +86,7 @@ public class BulletView : MonoBehaviour
             }
         }
         explosionParticles.Play();
-        Debug.Log("Playing explosion");
+        //Debug.Log("Playing explosion");
         StartCoroutine(SetParticleInactive(explosionParticles.gameObject, explosionParticles.main.duration));       
     }
 
