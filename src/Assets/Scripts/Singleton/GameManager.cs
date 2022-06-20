@@ -8,8 +8,14 @@ public class GameManager : MonoSingletonGeneric<GameManager>
 {
     
     public GameObject deathText;
-    
-    
+
+    //public AudioSource _audio;
+
+    private void Start()
+    {
+        //SceneController.Instance.StartSpecificSound(0);
+    }
+
     public void PlayerDeath()
     {
         DeathText();

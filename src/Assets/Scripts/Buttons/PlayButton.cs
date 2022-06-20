@@ -15,16 +15,15 @@ public class PlayButton : MonoBehaviour
 
     private void OnClick()
     {
-        //Time.timeScale = 1f;
-        
+        SceneController.Instance.StartSpecificSound(1);
         StartCoroutine(StartScene());
         
     }
 
     IEnumerator StartScene()
-    {
-        SceneController.Instance.ClickToPlay();
+    {        
         yield return new WaitForSeconds(2);
+        SceneController.Instance.ClickToPlay();
         SceneController.Instance.LoadRespectiveScene(1);
     }
 }

@@ -7,9 +7,13 @@ public class SceneController : MonoSingletonGeneric<SceneController>
 {
     public AudioSource[] audioList;
 
-    public void ClickToPlay()
+    protected override void Awake()
     {
-        audioList[1].Play();
+        base.Awake();
+        DontDestroyOnLoad(transform.gameObject);
+    }
+    public void ClickToPlay()
+    {        
         audioList[0].Play();
     }
 
@@ -31,7 +35,10 @@ public class SceneController : MonoSingletonGeneric<SceneController>
     {
         audioList[i].Play();
     }
-
+    public void StartSpecificSound(AudioSource _audio)
+    {
+        _audio.Play();
+    }
     public AudioClip GetAudioSource(int i)
     {
         return audioList[i].GetComponent<AudioClip>();
