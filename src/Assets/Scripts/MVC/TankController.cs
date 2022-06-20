@@ -7,6 +7,7 @@ public class TankController
 
     Rigidbody rb;
     private bool fired;
+    private bool clickedFireButton = false;
     public TankController(TankModel _tankModel, TankView _tankview)
     {
         tankModel = _tankModel;
@@ -49,7 +50,13 @@ public class TankController
         else if (Input.GetButtonUp(tankView.fireButton) && !fired)
         {
             PlayerFire();
-        }       
+        }
+        if (clickedFireButton)
+        {
+            Debug.Log("Clicked");
+            PlayerFire();
+            clickedFireButton = false;
+        }
     }
 
     private void PlayerFire()
@@ -61,4 +68,11 @@ public class TankController
         tankModel.BulletShell.currentLaunchForce = tankModel.BulletShell.minlaunchForce;
     }
 
+    public bool SetClickedFireButton(bool _value)
+    {
+        
+        clickedFireButton = _value;
+        //Debug.Log(clickedFireButton);
+        return clickedFireButton;
+    }
 }

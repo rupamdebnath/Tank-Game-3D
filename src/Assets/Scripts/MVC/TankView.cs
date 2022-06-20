@@ -105,4 +105,9 @@ public class TankView : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
             setHealth(10);
     }
+
+    public TankController getTankController()
+    {
+        return tankController;
+    }
 }

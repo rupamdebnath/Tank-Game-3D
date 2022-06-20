@@ -68,8 +68,6 @@ public class GameManager : MonoSingletonGeneric<GameManager>
         }
         else
         {
-            //Debug.Log("Exiting applciation, Game is over");
-            //EditorApplication.ExitPlaymode();
             Pause();
         }
     }
