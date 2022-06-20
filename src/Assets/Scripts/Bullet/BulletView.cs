@@ -86,15 +86,16 @@ public class BulletView : MonoBehaviour
             }
         }
         explosionParticles.Play();
-        StartCoroutine(SetParticleInactive(explosionParticles.gameObject, explosionParticles.main.duration));
-        bulletController.Disable();
-        BulletService.Instance.ReturnObjectToPoolDirectly(bulletController);
+        Debug.Log("Playing explosion");
+        StartCoroutine(SetParticleInactive(explosionParticles.gameObject, explosionParticles.main.duration));       
     }
 
     IEnumerator SetParticleInactive(GameObject obj, float duration)
     {
         yield return new WaitForSeconds(duration);
         obj.SetActive(false);
+        bulletController.Disable();
+        BulletService.Instance.ReturnObjectToPoolDirectly(bulletController);
     }
 
     private float CalculateDamage(Vector3 _targetposition)

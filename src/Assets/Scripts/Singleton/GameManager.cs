@@ -70,6 +70,7 @@ public class GameManager : MonoSingletonGeneric<GameManager>
         {
             //Debug.Log("Exiting applciation, Game is over");
             //EditorApplication.ExitPlaymode();
+            Pause();
         }
     }
 
