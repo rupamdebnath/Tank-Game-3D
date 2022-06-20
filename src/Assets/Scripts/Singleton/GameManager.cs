@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoSingletonGeneric<GameManager>
 {
     
     public GameObject deathText;
 
-    //public AudioSource _audio;
+    public Button playButton;
+    public Button pauseButton;
+    public GameObject pauseMenu;
 
-    private void Start()
+    public void PlayFromPause()
     {
-        //SceneController.Instance.StartSpecificSound(0);
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        pauseButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(false);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+        pauseButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(true);
     }
 
     public void PlayerDeath()
@@ -62,5 +76,7 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public void DeathText()
     {
         deathText.gameObject.SetActive(true);
+        SceneController.Instance.StopAllSounds();
+        SceneController.Instance.StartSpecificSound(2);
     }
 }

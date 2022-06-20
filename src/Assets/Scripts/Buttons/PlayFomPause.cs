@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseButton : MonoBehaviour
+public class PlayFomPause : MonoBehaviour
 {
     Button button;
-
-    GameObject PlayButton;
     void Awake()
     {
         button = GetComponent<Button>();
@@ -17,6 +15,6 @@ public class PauseButton : MonoBehaviour
     private void OnClick()
     {        
         SceneController.Instance.StartSpecificSound(1);
-        GameManager.Instance.Pause();
+        GameManager.Instance.PlayFromPause();
     }
 }

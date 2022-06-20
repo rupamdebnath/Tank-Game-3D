@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuitButton : MonoBehaviour
+public class HomeButton : MonoBehaviour
 {
     Button button;
     void Awake()
@@ -15,17 +15,15 @@ public class QuitButton : MonoBehaviour
     private void OnClick()
     {
         Time.timeScale = 1f;
-        StartCoroutine(WaitUntilPlayed(2));
+        SceneController.Instance.StartSpecificSound(1);
+        StartCoroutine(StartScene());
+
     }
 
-    IEnumerator WaitUntilPlayed(float _length)
+    IEnumerator StartScene()
     {
-        SceneController.Instance.StartSpecificSound(1);
-        yield return new WaitForSeconds(_length);
+        yield return new WaitForSeconds(1);
         SceneController.Instance.StopAllSounds();
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #endif
-        Application.Quit();
+        SceneController.Instance.LoadRespectiveScene(0);
     }
 }
