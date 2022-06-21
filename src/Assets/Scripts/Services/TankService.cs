@@ -15,9 +15,10 @@ public class TankService : MonoBehaviour
     void StartGame()
     {
         CreatePlayerTank(0);
-        CreateEnemyTank(1);
-        CreateEnemyTank(2);
-        CreateEnemyTank(3);
+        for (int i=1; i<6; i++)
+        {
+            CreateEnemyTank(i);
+        }
     }   
 
     private void CreatePlayerTank(int index)

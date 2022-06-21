@@ -13,7 +13,9 @@ public class FireButton : MonoBehaviour
     }
 
     private void OnClick()
-    {        
-        GameObject.FindWithTag("Player").GetComponent<TankView>().getTankController().SetClickedFireButton(true);
+    {   if (GameObject.FindWithTag("Player") != null)
+        {
+            GameObject.FindWithTag("Player").GetComponent<TankView>().getTankController().SetClickedFireButton(true);
+        }
     }
 }

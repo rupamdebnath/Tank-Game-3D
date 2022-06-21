@@ -35,7 +35,10 @@ public class GameManager : MonoSingletonGeneric<GameManager>
         DeathText();
         GameObject.FindGameObjectWithTag("Player").GetComponent<TankView>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").SetActive(false);
-        GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyTankView>().enabled = false;
+        if (GameObject.FindGameObjectWithTag("Enemy") != null)
+        {
+            GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyTankView>().enabled = false;
+        }
         StartCoroutine(CameraAnime());        
     }
 
