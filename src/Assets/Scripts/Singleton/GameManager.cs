@@ -81,4 +81,12 @@ public class GameManager : MonoSingletonGeneric<GameManager>
         SceneController.Instance.StopAllSounds();
         SceneController.Instance.StartSpecificSound(2);
     }
+    private void Update()
+    {
+        if (GameObject.FindGameObjectWithTag("Enemy") == null)
+        {
+            deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations, You won!";
+            PlayerDeath();
+        }
+    }
 }
