@@ -39,15 +39,6 @@ public class BulletView : MonoBehaviour
     }
 
     public BulletSO bullet;
-    private void Start()
-    {
-        StartCoroutine(DisableThis(maxLifeTime));
-    }
-    IEnumerator DisableThis(float time)
-    {
-        yield return new WaitForSeconds(time);
-        gameObject.SetActive(false);
-    }
 
     //[Obsolete] duration particle effect, using explosionParticles.main.
     private void OnTriggerEnter(Collider other)
@@ -92,10 +83,11 @@ public class BulletView : MonoBehaviour
 
     IEnumerator SetParticleInactive(GameObject obj, float duration)
     {
-        yield return new WaitForSeconds(duration);
-        obj.SetActive(false);
-        bulletController.Disable();
+        yield return new WaitForSeconds(duration);                
         BulletService.Instance.ReturnObjectToPoolDirectly(bulletController);
+        Debug.Log("At return");
+        bulletController.Disable();
+        //obj.SetActive(false);
     }
 
     private float CalculateDamage(Vector3 _targetposition)

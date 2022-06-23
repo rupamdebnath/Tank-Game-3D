@@ -52,8 +52,7 @@ public class TankController
             PlayerFire();
         }
         if (clickedFireButton)
-        {
-            Debug.Log("Clicked");
+        {            
             PlayerFire();
             clickedFireButton = false;
         }

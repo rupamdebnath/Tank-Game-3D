@@ -33,6 +33,7 @@ public class ServicePool<T> : MonoSingletonGeneric<ServicePool<T>> where T : cla
     public virtual void ReturnItem(T item)
     {
         PooledItem<T> pooledItem = pooledItems.Find(i => i.Item.Equals(item));
+        Debug.Log("Returning item");
         pooledItem.IsUsed = false;
     }
 
