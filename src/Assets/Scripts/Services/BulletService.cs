@@ -24,7 +24,6 @@ public class BulletService : MonoSingletonGeneric<BulletService>
 
     public void ReturnObjectToPoolDirectly(BulletController _bulletController)
     {
-        Debug.Log("Returning");
         servicePoolBullet.ReturnItem(_bulletController);
     }
 

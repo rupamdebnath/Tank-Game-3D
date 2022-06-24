@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
@@ -13,6 +14,7 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public Button playButton;
     public Button pauseButton;
     public GameObject pauseMenu;
+    public TankService tankService;
 
     public void PlayFromPause()
     {
@@ -33,8 +35,10 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public void PlayerDeath()
     {
         DeathText();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<TankView>().enabled = false;
-        GameObject.FindGameObjectWithTag("Player").SetActive(false);
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<TankView>().enabled = false;
+        }
         if (GameObject.FindGameObjectWithTag("Enemy") != null)
         {
             GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyTankView>().enabled = false;
@@ -70,23 +74,33 @@ public class GameManager : MonoSingletonGeneric<GameManager>
             StartCoroutine(OtherObjectsAnime());
         }
         else
-        {
+        {            
             Pause();
+            Time.timeScale = 1f;            
         }
     }
 
     public void DeathText()
     {
         deathText.gameObject.SetActive(true);
-        SceneController.Instance.StopAllSounds();
-        SceneController.Instance.StartSpecificSound(2);
+        //SceneController.Instance.StopSpecificSound(0);        
     }
     private void Update()
     {
-        if (GameObject.FindGameObjectWithTag("Enemy") == null)
+        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == 2)
         {
-            deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations, You won!";
-            PlayerDeath();
+            Debug.Log(ServiceEvents.Instance.GetCountOfEnemiesDead());
+           
+            SceneController.Instance.StartSpecificSound(3);
+            EnemyDeath();
         }
+        else
+            deathText.GetComponent<TextMeshProUGUI>().text = "Game Over You are Dead!";
+    }
+
+    private void EnemyDeath()
+    {
+        deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You won!";
+        PlayerDeath();
     }
 }

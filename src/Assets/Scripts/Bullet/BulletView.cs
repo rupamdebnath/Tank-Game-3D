@@ -57,7 +57,8 @@ public class BulletView : MonoBehaviour
 
                 if (targetRigidBody.GetComponent<TankView>().getHealth() <= 0)
                 {
-                    targetRigidBody.GetComponent<TankView>().PlayExplosion();                                        
+                    targetRigidBody.GetComponent<TankView>().PlayExplosion();
+                    targetRigidBody.gameObject.SetActive(false);
                 }
             }
             else if (targetRigidBody.GetComponent<Transform>().tag == "Enemy")
@@ -85,7 +86,6 @@ public class BulletView : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);                
         BulletService.Instance.ReturnObjectToPoolDirectly(bulletController);
-        Debug.Log("At return");
         bulletController.Disable();
         //obj.SetActive(false);
     }

@@ -19,9 +19,10 @@ public class TankView : MonoBehaviour
     public Vector3 Offset;
     public string fireButton;
     public ParticleSystem tankExplosion;
-    int bulletCount = 0;
+    int bulletCount;
     private void Awake()
     {
+        bulletCount = 0;
         rb = gameObject.GetComponent<Rigidbody>();
         joystick = GameObject.Find("Fixed Joystick").GetComponent<FixedJoystick>();
     }

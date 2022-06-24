@@ -18,4 +18,9 @@ public class ServiceEvents : SingletonGeneric <ServiceEvents>
     {
         return deadEnemiesCount;
     }
+
+    public void ResetEnemyDeathCount()
+    {
+        deadEnemiesCount = 0;
+    }
 }

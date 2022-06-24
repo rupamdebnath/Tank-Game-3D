@@ -28,7 +28,8 @@ public class SceneController : MonoSingletonGeneric<SceneController>
 
     public void StopSpecificSound(int i)
     {
-        audioList[i].Stop();
+        if (audioList[i].isPlaying)
+            audioList[i].Stop();
     }
 
     public void StartSpecificSound(int i)

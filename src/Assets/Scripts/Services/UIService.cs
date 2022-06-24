@@ -16,8 +16,10 @@ public class UIService : MonoBehaviour
     }
     private void OnDisable()
     {
+        Debug.Log("inside Disable");
         ServiceEvents.Instance.OnFire -= GetBulletsFired;
         ServiceEvents.Instance.OnEnemyDeath -= ShowEnemiesKilled;
+        ServiceEvents.Instance.ResetEnemyDeathCount();
     }
 
     void GetBulletsFired(int value)
@@ -65,5 +67,11 @@ public class UIService : MonoBehaviour
         achievementToggle.gameObject.SetActive(false);
         achievementToggle.isOn = false;
         achievementToggle.gameObject.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Bold;
+    }
+
+    void Awake()
+    {
+        GameManager.Instance.deathText.SetActive(false);
+        GameManager.Instance.deathText.GetComponent<TextMeshProUGUI>().text = "Game Over You are Dead!";
     }
 }
