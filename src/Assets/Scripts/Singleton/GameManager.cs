@@ -14,7 +14,6 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public Button playButton;
     public Button pauseButton;
     public GameObject pauseMenu;
-    public TankService tankService;
     bool isDone;
 
     private void Start()
@@ -41,7 +40,7 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public void PlayerDeath()
     {
         DeathText();
-        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == tankService.tankList.getLength()-1)
+        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == 9)
             SceneController.Instance.StartSpecificSound(3);
         else
             SceneController.Instance.StartSpecificSound(2);
@@ -97,7 +96,7 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     }
     private void Update()
     {
-        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == tankService.tankList.getLength()-1 && !isDone)
+        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == 9 && !isDone)
         {
             deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You have Won!";
             isDone = true;
