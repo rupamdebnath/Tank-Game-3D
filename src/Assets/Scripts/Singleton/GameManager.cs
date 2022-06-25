@@ -41,7 +41,7 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public void PlayerDeath()
     {
         DeathText();
-        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == tankService.tankList.getLength())
+        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == tankService.tankList.getLength()-1)
             SceneController.Instance.StartSpecificSound(3);
         else
             SceneController.Instance.StartSpecificSound(2);
@@ -97,7 +97,7 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     }
     private void Update()
     {
-        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == tankService.tankList.getLength() && !isDone)
+        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == tankService.tankList.getLength()-1 && !isDone)
         {
             deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You have Won!";
             isDone = true;
