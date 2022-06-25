@@ -106,8 +106,10 @@ public class GameManager : MonoSingletonGeneric<GameManager>
             isDone = true;
             PlayerDeath();
         }
-        else
+        else if(!isDone)
+        {
             deathText.GetComponent<TextMeshProUGUI>().text = "Game Over You are Dead!";
+        }
     }
 
     //IEnumerator EnemyDeath()
