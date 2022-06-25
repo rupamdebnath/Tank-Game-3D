@@ -99,9 +99,6 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     {
         if (ServiceEvents.Instance.GetCountOfEnemiesDead() == 2 && !isDone)
         {
-            Debug.Log(ServiceEvents.Instance.GetCountOfEnemiesDead());
-            //SceneController.Instance.StopAllSounds();
-            //SceneController.Instance.StartSpecificSound(3);
             deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You have Won!";
             isDone = true;
             PlayerDeath();
@@ -112,11 +109,4 @@ public class GameManager : MonoSingletonGeneric<GameManager>
         }
     }
 
-    //IEnumerator EnemyDeath()
-    //{       
-    //    //deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You have Won!";
-    //    yield return new WaitForSeconds(1);
-    //    //SceneController.Instance.StartSpecificSound(3);
-    //    PlayerDeath();
-    //}
 }

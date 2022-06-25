@@ -16,7 +16,6 @@ public class UIService : MonoBehaviour
     }
     private void OnDisable()
     {
-        Debug.Log("inside Disable");
         ServiceEvents.Instance.OnFire -= GetBulletsFired;
         ServiceEvents.Instance.OnEnemyDeath -= ShowEnemiesKilled;
         ServiceEvents.Instance.ResetEnemyDeathCount();
