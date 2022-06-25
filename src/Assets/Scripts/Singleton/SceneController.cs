@@ -6,11 +6,19 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoSingletonGeneric<SceneController>
 {
     public AudioSource[] audioList;
-
+    private static SceneController instance;
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(transform.gameObject);
+        if (instance == null)
+        {
+            instance = this;           
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     public void ClickToPlay()
     {        
@@ -19,7 +27,7 @@ public class SceneController : MonoSingletonGeneric<SceneController>
 
     public void StopAllSounds()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (audioList[i].isPlaying)
                 audioList[i].Stop();

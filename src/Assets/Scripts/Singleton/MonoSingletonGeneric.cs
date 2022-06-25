@@ -15,7 +15,7 @@ public class MonoSingletonGeneric <T> : MonoBehaviour where T : MonoSingletonGen
         }
         else
         {
-            Destroy(this);
+            Destroy((T)this);
         }
     }
 }

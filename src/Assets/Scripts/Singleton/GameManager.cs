@@ -15,7 +15,13 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public Button pauseButton;
     public GameObject pauseMenu;
     public TankService tankService;
+    bool isDone;
 
+    private void Start()
+    {
+        isDone = false;
+    }
+    
     public void PlayFromPause()
     {
         Time.timeScale = 1f;
@@ -35,6 +41,10 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public void PlayerDeath()
     {
         DeathText();
+        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == 2)
+            SceneController.Instance.StartSpecificSound(3);
+        else
+            SceneController.Instance.StartSpecificSound(2);
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<TankView>().enabled = false;
@@ -83,24 +93,28 @@ public class GameManager : MonoSingletonGeneric<GameManager>
     public void DeathText()
     {
         deathText.gameObject.SetActive(true);
-        //SceneController.Instance.StopSpecificSound(0);        
+        SceneController.Instance.StopSpecificSound(0);
     }
     private void Update()
     {
-        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == 2)
+        if (ServiceEvents.Instance.GetCountOfEnemiesDead() == 2 && !isDone)
         {
             Debug.Log(ServiceEvents.Instance.GetCountOfEnemiesDead());
-           
-            SceneController.Instance.StartSpecificSound(3);
-            EnemyDeath();
+            //SceneController.Instance.StopAllSounds();
+            //SceneController.Instance.StartSpecificSound(3);
+            deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You have Won!";
+            isDone = true;
+            PlayerDeath();
         }
         else
             deathText.GetComponent<TextMeshProUGUI>().text = "Game Over You are Dead!";
     }
 
-    private void EnemyDeath()
-    {
-        deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You won!";
-        PlayerDeath();
-    }
+    //IEnumerator EnemyDeath()
+    //{       
+    //    //deathText.GetComponent<TextMeshProUGUI>().text = "Congratulations You have Won!";
+    //    yield return new WaitForSeconds(1);
+    //    //SceneController.Instance.StartSpecificSound(3);
+    //    PlayerDeath();
+    //}
 }
