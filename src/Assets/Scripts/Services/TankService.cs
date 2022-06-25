@@ -15,7 +15,7 @@ public class TankService : MonoBehaviour
     void StartGame()
     {
         CreatePlayerTank(0);
-        for (int i=1; i<=2; i++)
+        for (int i=1; i<=tankList.getLength()-1; i++)
         {
             CreateEnemyTank(i);
         }
